@@ -1,0 +1,190 @@
+{
+  "schema": "darwin.assimilation-decision/1",
+  "decision_id": "hf-semantic-receptor-001",
+  "decided_at": "2026-08-29T21:23:40Z",
+  "need": {
+    "repository": "Spicy-source/Darwin-2-placeholder-maybe-enviorment",
+    "revision": "76fc7f7d4be597bc383b43cdc85b5a0b3b328d23",
+    "path": "world/needs/hf-semantic-receptor-001.json",
+    "sha256_git_blob_bytes": "3cea363fe127e79e0f007edb188e7c013cd62fe5582ad15da80c23f1b2c3b716",
+    "claim_ceiling": "EXTERNAL_NEED_ONLY_NOT_CAPABILITY_NOT_BENEFIT_NOT_ADOPTION"
+  },
+  "candidate": {
+    "kind": "huggingface-model",
+    "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "api_url": "https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2",
+    "repository_url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+    "public": true,
+    "gated": false,
+    "disabled": false,
+    "declared_license": "apache-2.0",
+    "pipeline_tag": "sentence-similarity",
+    "library": "sentence-transformers"
+  },
+  "qualification": {
+    "api_body_matches_need_sha256": true,
+    "api_revision_matches_pin": true,
+    "git_main_matches_pin": true,
+    "license_matches_need": true,
+    "pipeline_matches_need": true,
+    "library_matches_need": true,
+    "public_ungated_enabled": true
+  },
+  "canary": {
+    "protocol": "darwin.hf-semantic-receptor-canary/v2",
+    "evidence_maturity": "darwin-reproduced",
+    "claim_ceiling": "FIXED_SYNTHETIC_RETRIEVAL_CANARY_ONLY_NO_AUTHORITY_NO_ADOPTION",
+    "fixture": {
+      "sha256": "08337abb93eedaf25590fd2380f592447f6b849a63ef7c9c5f105616f4d4d066",
+      "documents": 16,
+      "queries": 24,
+      "labels": 8,
+      "frozen_before_only_run": true
+    },
+    "runtime": {
+      "package": "@huggingface/transformers",
+      "version": "4.2.0",
+      "integrity": "sha512-8BRCoBMH0XsWaEIamuR0LrJGAfftgHAfb2Vrffy0VKlSAE/MnUJ5/h/zTfEP3fDIft+nk7TqB8xXEyABGitBjQ==",
+      "license": "Apache-2.0",
+      "offline_during_measurement": true
+    },
+    "artifacts": [
+      {
+        "path": "onnx/model_quint8_avx2.onnx",
+        "sha256": "b941bf19f1f1283680f449fa6a7336bb5600bdcd5f84d10ddc5cd72218a0fd21",
+        "bytes": 23046789
+      },
+      {
+        "path": "onnx/model.onnx",
+        "sha256": "6fd5d72fe4589f189f8ebc006442dbb529bb7ce38f8082112682524616046452",
+        "bytes": 90405214
+      }
+    ],
+    "artifact_bytes_total": 113452003,
+    "parity": {
+      "minimum_embedding_cosine": 0.985183927683972,
+      "top1_agreement": "16/16"
+    },
+    "metrics": {
+      "paraphrase_hit_at_3": {
+        "lexical": "5/8",
+        "dense": "6/8",
+        "dense_delta": 1,
+        "required_delta": 3,
+        "passed": false
+      },
+      "exact_identifier_hit_at_3": {
+        "lexical": "8/8",
+        "dense": "8/8",
+        "union": "8/8",
+        "passed": true
+      },
+      "protected_misroutes_zero": false,
+      "protected_queries_top1": false
+    },
+    "protected_failure_example": {
+      "query": "What proves a builder is entitled to proceed rather than merely able?",
+      "expected": "AUTHORITY_GATE",
+      "dense_top3": ["EVIDENCE_RECEIPT", "STATE_OWNER", "AUTHORITY_GATE"]
+    },
+    "resources": {
+      "index_build_ms": 410.4652,
+      "warm_latency_p95_ms": 18.8562,
+      "observed_rss_bytes": 250007552,
+      "all_resource_gates_passed": true
+    },
+    "gates": {
+      "fixtureHasHeadroom": true,
+      "paraphraseHit3DeltaAtLeast3": false,
+      "protectedMisrouteZero": false,
+      "protectedQueriesTop1": false,
+      "exactUnionNoRegression": true,
+      "onnxVectorParity": true,
+      "onnxTop1Parity": true,
+      "modelPayloadWithin150MiB": true,
+      "indexBuildWithin10Minutes": true,
+      "warmP95Within200Ms": true,
+      "observedRssWithin1_5GiB": true
+    }
+  },
+  "decision": {
+    "disposition": "REJECT",
+    "result": "REJECT_RETAIN_LEXICAL_BASELINE",
+    "adoption_status": "NOT_ADOPTED",
+    "incumbent": "deterministic token-overlap lexical retrieval",
+    "rationale": "MiniLM improved paraphrase hit@3 by only one case where the frozen gate required three, and it produced protected-category misroutes. Passing resource, artifact-parity, and exact-ID union controls cannot override the failed quality and protected-route vetoes.",
+    "retained_change": "The lexical baseline remains authoritative; no MiniLM adapter, index, model artifact, or dependency enters Darwin-2.",
+    "reversal_evidence": "Reassess only with a new pre-frozen workload that represents a real Darwin consumer and shows the candidate passes all protected-route vetoes while materially beating the same lexical baseline."
+  },
+  "benefit_and_cost": {
+    "benefit_status": "NEGATIVE_UNDER_FROZEN_GATE",
+    "quality_benefit": "Insufficient: +1 paraphrase hit@3 versus required +3, with protected misroutes.",
+    "resource_cost": {
+      "model_payload_bytes": 113452003,
+      "observed_rss_bytes": 250007552,
+      "warm_latency_p95_ms": 18.8562
+    },
+    "full_cost_claim": "No production maintenance, deployment, or downstream decision cost was measured because the quality veto terminated admission."
+  },
+  "limitations_and_non_transfer": [
+    "The canary used one fixed synthetic 16-document retrieval fixture, not a production Darwin archive or external downstream decision.",
+    "The result rejects this exact MiniLM revision for this frozen gate; it does not prove dense retrieval is universally inferior.",
+    "Resource measurements are host-specific observations, not deployment guarantees.",
+    "Popularity, model-card benchmarks, and sentence-similarity claims were not treated as Darwin Benefit.",
+    "The declared Apache-2.0 license is recorded but is not a legal conclusion about every training source or downstream use."
+  ],
+  "rollback": {
+    "status": "NO_ORGANISM_MUTATION_TO_ROLL_BACK",
+    "action": "Retain lexical retrieval and delete disposable verifier cache when no longer needed; preserve hashes, harness, and result as negative evidence."
+  },
+  "next_candidate_policy": {
+    "candidate": "BAAI/bge-small-en-v1.5@5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+    "status": "NOT_STARTED",
+    "condition": "May be evaluated only under the same fixture hash and vetoes, with a separate authorized claim and no reuse of MiniLM outcomes as prior truth."
+  },
+  "evidence": [
+    {
+      "role": "model_api_body",
+      "path": "assimilation/evidence/hf-model-api.raw",
+      "bytes": 7075,
+      "sha256": "3b1b9883b1614aa13553d4a518bd4d567b62b04413e32f25c43913aa7080e2fa"
+    },
+    {
+      "role": "pinned_repository_tree",
+      "path": "assimilation/evidence/hf-model-tree-1110a243.raw",
+      "bytes": 6465,
+      "sha256": "a6bdcf69a3000dcb5803e8218c06852045afd16262d01b75c98cbfa17dc736a6"
+    },
+    {
+      "role": "pinned_model_card",
+      "path": "assimilation/evidence/hf-model-card-1110a243.raw",
+      "bytes": 10502,
+      "sha256": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0"
+    },
+    {
+      "role": "frozen_canary_harness",
+      "path": "assimilation/evidence/hf-semantic-canary-v2.mjs",
+      "sha256": "175ca006e75f8da5b173d9712a8283ef772b251b40913c8dd01093e7a043d851"
+    },
+    {
+      "role": "canary_dependency_lock",
+      "path": "assimilation/evidence/hf-semantic-canary-v2.package-lock.json",
+      "sha256": "56d1f8de6eedff60cd198dcbf0e5b2fa12faf8c46923d3513144e79f1f73a88f"
+    },
+    {
+      "role": "terminal_canary_result",
+      "path": "assimilation/evidence/hf-semantic-canary-v2.result.json",
+      "sha256": "32584563ac1b8542cb359a1c079fb7637c100958c847038eaf555da85d53ed42"
+    }
+  ],
+  "publication": {
+    "repository": "Spicy-source/Darwin-2nd-placeholder-3rd-darwin-git",
+    "path": "assimilation/hf-semantic-receptor-001.json",
+    "provider_reinspection": {
+      "status": "PENDING_AFTER_INITIAL_PUBLISH",
+      "receipt_path": "assimilation/evidence/hf-semantic-receptor-001.provider-reinspection.json"
+    }
+  },
+  "claim_ceiling": "PINNED_SYNTHETIC_CANARY_REJECT_ONLY_NOT_AUTHORITY_NOT_PRODUCTION_BENEFIT_NOT_GENERAL_DENSE_RETRIEVAL_VERDICT"
+}

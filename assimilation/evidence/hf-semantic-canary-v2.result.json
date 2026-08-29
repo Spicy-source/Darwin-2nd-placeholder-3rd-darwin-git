@@ -1,0 +1,4958 @@
+{
+  "protocol": "darwin.hf-semantic-receptor-canary/v2",
+  "decision": "REJECT_RETAIN_LEXICAL_BASELINE",
+  "cutoffDate": "2026-08-29",
+  "claimCeiling": "FIXED_SYNTHETIC_RETRIEVAL_CANARY_ONLY_NO_AUTHORITY_NO_ADOPTION",
+  "searchStopContract": {
+    "decisionToSupport": "Whether MiniLM merits a shadow-only Darwin semantic receptor canary",
+    "capabilityFailure": "Recover short paraphrased capability evidence that lexical overlap misses",
+    "incumbent": "deterministic token-overlap lexical retrieval",
+    "deferredChallengers": [
+      "BAAI/bge-small-en-v1.5@5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+      "jinaai/jina-embeddings-v2-small-en@44e7d1d6caec8c883c2d4b207588504d519788d0"
+    ],
+    "knownGap": "Synthetic 16-document fixture; no production Darwin archive or downstream decision delta"
+  },
+  "model": {
+    "id": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "license": "Apache-2.0",
+    "runtime": {
+      "package": "@huggingface/transformers",
+      "version": "4.2.0",
+      "integrity": "sha512-8BRCoBMH0XsWaEIamuR0LrJGAfftgHAfb2Vrffy0VKlSAE/MnUJ5/h/zTfEP3fDIft+nk7TqB8xXEyABGitBjQ==",
+      "license": "Apache-2.0"
+    },
+    "artifacts": [
+      {
+        "relative": "onnx/model_quint8_avx2.onnx",
+        "sha256": "b941bf19f1f1283680f449fa6a7336bb5600bdcd5f84d10ddc5cd72218a0fd21",
+        "bytes": 23046789
+      },
+      {
+        "relative": "onnx/model.onnx",
+        "sha256": "6fd5d72fe4589f189f8ebc006442dbb529bb7ce38f8082112682524616046452",
+        "bytes": 90405214
+      }
+    ],
+    "modelPayloadBytes": 113452003
+  },
+  "fixture": {
+    "sha256": "08337abb93eedaf25590fd2380f592447f6b849a63ef7c9c5f105616f4d4d066",
+    "documents": 16,
+    "queries": 24,
+    "labels": 8
+  },
+  "metrics": {
+    "semantic": {
+      "lexical": {
+        "hit1": 11,
+        "hit3": 13,
+        "mrr": 0.7470238095238096,
+        "total": 16
+      },
+      "dense": {
+        "hit1": 12,
+        "hit3": 14,
+        "mrr": 0.8110119047619048,
+        "total": 16
+      }
+    },
+    "paraphrase": {
+      "lexical": {
+        "hit1": 3,
+        "hit3": 5,
+        "mrr": 0.49404761904761907,
+        "total": 8
+      },
+      "dense": {
+        "hit1": 4,
+        "hit3": 6,
+        "mrr": 0.6220238095238095,
+        "total": 8
+      }
+    },
+    "exact": {
+      "lexical": {
+        "hit1": 8,
+        "hit3": 8,
+        "mrr": 1,
+        "total": 8
+      },
+      "dense": {
+        "hit1": 7,
+        "hit3": 8,
+        "mrr": 0.9375,
+        "total": 8
+      },
+      "union": {
+        "hit1": 8,
+        "hit3": 8,
+        "mrr": 1,
+        "total": 8
+      }
+    }
+  },
+  "parity": {
+    "minimumCosine": 0.985183927683972,
+    "top1Agreement": 16,
+    "total": 16
+  },
+  "resources": {
+    "indexBuildMs": 410.4652000000001,
+    "warmLatencyMs": {
+      "n": 16,
+      "median": 9.714899999999943,
+      "p95": 18.85620000000017,
+      "min": 6.783199999999852,
+      "max": 18.85620000000017
+    },
+    "observedRssBytes": 250007552,
+    "modelPayloadBytes": 113452003
+  },
+  "gates": {
+    "fixtureHasHeadroom": true,
+    "paraphraseHit3DeltaAtLeast3": false,
+    "protectedMisrouteZero": false,
+    "protectedQueriesTop1": false,
+    "exactUnionNoRegression": true,
+    "onnxVectorParity": true,
+    "onnxTop1Parity": true,
+    "modelPayloadWithin150MiB": true,
+    "indexBuildWithin10Minutes": true,
+    "warmP95Within200Ms": true,
+    "observedRssWithin1_5GiB": true
+  },
+  "wrongProtectedTop3": [
+    {
+      "query": "q-owner-l",
+      "got": "EFFECT_COMMITMENT",
+      "expected": "STATE_OWNER"
+    },
+    {
+      "query": "q-owner-p",
+      "got": "EFFECT_COMMITMENT",
+      "expected": "STATE_OWNER"
+    },
+    {
+      "query": "q-receipt-l",
+      "got": "EFFECT_COMMITMENT",
+      "expected": "EVIDENCE_RECEIPT"
+    },
+    {
+      "query": "q-receipt-p",
+      "got": "EFFECT_COMMITMENT",
+      "expected": "EVIDENCE_RECEIPT"
+    },
+    {
+      "query": "q-receipt-p",
+      "got": "AUTHORITY_GATE",
+      "expected": "EVIDENCE_RECEIPT"
+    },
+    {
+      "query": "q-frontier-l",
+      "got": "AUTHORITY_GATE",
+      "expected": "LEGAL_FRONTIER"
+    },
+    {
+      "query": "q-frontier-p",
+      "got": "EFFECT_COMMITMENT",
+      "expected": "LEGAL_FRONTIER"
+    },
+    {
+      "query": "q-effect-p",
+      "got": "AUTHORITY_GATE",
+      "expected": "EFFECT_COMMITMENT"
+    }
+  ],
+  "rankings": [
+    {
+      "id": "q-owner-l",
+      "kind": "lexical",
+      "expectedLabel": "STATE_OWNER",
+      "text": "Which state owner writes mutable mission truth?",
+      "lexical": [
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.42857142857142855
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.2857142857142857
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.14285714285714285
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.14285714285714285
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.14285714285714285
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.14285714285714285
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.14285714285714285
+        }
+      ],
+      "dense": [
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.5867190818230533
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.40119916594571425
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.27347893562600245
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.2600582625468156
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.2377625559372824
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.23489519808983397
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.2179457374877841
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.19629180589428977
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.18524312829647305
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.1775731267197104
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.17388322816423352
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.17386203428027974
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.17293190227260632
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.16731463173212058
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.1669090330710548
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.10836999181880753
+        }
+      ],
+      "union": [
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.42857142857142855
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.2857142857142857
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.14285714285714285
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.14285714285714285
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.14285714285714285
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.14285714285714285
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.14285714285714285
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.27347893562600245
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.2600582625468156
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.2377625559372824
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.19629180589428977
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.18524312829647305
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.1775731267197104
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.17386203428027974
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.16731463173212058
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.10836999181880753
+        }
+      ]
+    },
+    {
+      "id": "q-owner-p",
+      "kind": "paraphrase",
+      "expectedLabel": "STATE_OWNER",
+      "text": "Which durable component has final say when two agents disagree?",
+      "lexical": [
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.1
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.1
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.1
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.1
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1
+        }
+      ],
+      "dense": [
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.35462274190825005
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.3137508414902861
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.2978993665381059
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.2694816093956418
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.2526098092168242
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.22123400091960901
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.21641814428285322
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.21162199600634443
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.20423859662693372
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.16539701584683203
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.15759328113041005
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.1489746622224547
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.10758802025629462
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.10006619168445516
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.04887184106468971
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": -0.05875845858817505
+        }
+      ],
+      "union": [
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.1
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.1
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.1
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.1
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.2694816093956418
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.2526098092168242
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.22123400091960901
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.21162199600634443
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.20423859662693372
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.16539701584683203
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.15759328113041005
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.1489746622224547
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.10006619168445516
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.04887184106468971
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": -0.05875845858817505
+        }
+      ]
+    },
+    {
+      "id": "q-authority-l",
+      "kind": "lexical",
+      "expectedLabel": "AUTHORITY_GATE",
+      "text": "Which authority gate admits executable work?",
+      "lexical": [
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.6666666666666666
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.16666666666666666
+        }
+      ],
+      "dense": [
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.5438654601620341
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.3436856048546849
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.28948751725666955
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.27836742504496753
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.2315236893680137
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.1758355786196113
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.16382597305107227
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1476358940664854
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.1385089582353285
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.12665256118794682
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.09044566800007099
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.08611332703530336
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.0559984808000643
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.05443477246616324
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": -0.0034480983496723537
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": -0.005694160576552303
+        }
+      ],
+      "union": [
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.6666666666666666
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.3436856048546849
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.2315236893680137
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.1758355786196113
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.16382597305107227
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1476358940664854
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.1385089582353285
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.12665256118794682
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.09044566800007099
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.08611332703530336
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.0559984808000643
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.05443477246616324
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": -0.0034480983496723537
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": -0.005694160576552303
+        }
+      ]
+    },
+    {
+      "id": "q-authority-p",
+      "kind": "paraphrase",
+      "expectedLabel": "AUTHORITY_GATE",
+      "text": "What proves a builder is entitled to proceed rather than merely able?",
+      "lexical": [
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.3333333333333333
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.25
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.08333333333333333
+        }
+      ],
+      "dense": [
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.3862018785549542
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.2842287493024758
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.28095663308649027
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.2402814257842605
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.2228720823999669
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.18525230781998536
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.1818954138067157
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.17738282348998713
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.12723642717530595
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.12304627936663406
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.11854254859248967
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.09851585780324462
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.08992403076853604
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.0739682108918574
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.0013032812978219406
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": -0.05476616281235351
+        }
+      ],
+      "union": [
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.3333333333333333
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.25
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.3862018785549542
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.2842287493024758
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.18525230781998536
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.17738282348998713
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.09851585780324462
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": -0.05476616281235351
+        }
+      ]
+    },
+    {
+      "id": "q-receipt-l",
+      "kind": "lexical",
+      "expectedLabel": "EVIDENCE_RECEIPT",
+      "text": "Which evidence receipt binds hashes and test commands?",
+      "lexical": [
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.5
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.25
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.125
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.125
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.125
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.125
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.125
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.125
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.125
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.125
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.125
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.125
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.125
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.125
+        }
+      ],
+      "dense": [
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.462300979358544
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.4408279738658435
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.40352100140982905
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.3377108068174747
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.3194156994400797
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.2919746558535071
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.2651696895919598
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.23493926752011884
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.20138328683435788
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.1838441701065401
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.15684347828109999
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.15418359299887038
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.14444854079956743
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.13096994288887465
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.12757130324894234
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.11188774939142701
+        }
+      ],
+      "union": [
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.5
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.25
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.125
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.125
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.125
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.125
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.125
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.125
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.125
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.125
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.125
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.125
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.125
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.125
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.4408279738658435
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.23493926752011884
+        }
+      ]
+    },
+    {
+      "id": "q-receipt-p",
+      "kind": "paraphrase",
+      "expectedLabel": "EVIDENCE_RECEIPT",
+      "text": "How can a stranger check yesterday's claimed outcome from artifacts alone?",
+      "lexical": [
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.08333333333333333
+        }
+      ],
+      "dense": [
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.41452267313755253
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.3418326330989915
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.21985818758623238
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.19534617940525775
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.18518548543112162
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.17538891608494533
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.17462027233441185
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.17345002974687868
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.16654300718263604
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.15689193983001534
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.15540218432655906
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.11266959456551016
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.044670588906447546
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.03887057647245889
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.036812167123985544
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": -0.017581057775901982
+        }
+      ],
+      "union": [
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.21985818758623238
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.19534617940525775
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.18518548543112162
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.17345002974687868
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.16654300718263604
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.15540218432655906
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.03887057647245889
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.036812167123985544
+        }
+      ]
+    },
+    {
+      "id": "q-continuity-l",
+      "kind": "lexical",
+      "expectedLabel": "DURABLE_CONTINUITY",
+      "text": "What durable continuity survives process death?",
+      "lexical": [
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.3333333333333333
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.3333333333333333
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.16666666666666666
+        }
+      ],
+      "dense": [
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.5501629368550935
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.49022178432030705
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.283944930630365
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.2689903228746002
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.2541746730840863
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.21233885698425536
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.20676236633220657
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.20174810921588304
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.18419078365180863
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.14572541654373158
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.14354386896580457
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.10416214365791168
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.09756131460028587
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.07748435093814249
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.07249958304426188
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.04686784659674902
+        }
+      ],
+      "union": [
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.3333333333333333
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.3333333333333333
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.2689903228746002
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.2541746730840863
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.21233885698425536
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.20676236633220657
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.20174810921588304
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.14572541654373158
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.14354386896580457
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.10416214365791168
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.09756131460028587
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.07748435093814249
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.07249958304426188
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.04686784659674902
+        }
+      ]
+    },
+    {
+      "id": "q-continuity-p",
+      "kind": "paraphrase",
+      "expectedLabel": "DURABLE_CONTINUITY",
+      "text": "If every running program and chat vanish, what lets the same being resume?",
+      "lexical": [
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.15384615384615385
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.15384615384615385
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.15384615384615385
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.15384615384615385
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.15384615384615385
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.15384615384615385
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.07692307692307693
+        }
+      ],
+      "dense": [
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.2750525871978576
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.23493093483007968
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.2150022336501984
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.20883701910419478
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.19067632165172504
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.13862842214302534
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.1355201719211418
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.12483247412188359
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.12353036276020003
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1161180448212984
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.10546497957089898
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.09649197654471782
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.078660117863074
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.04168470440573952
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.038750334676780934
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": -0.003502776982882657
+        }
+      ],
+      "union": [
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.15384615384615385
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.15384615384615385
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.15384615384615385
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.15384615384615385
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.15384615384615385
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.15384615384615385
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.12353036276020003
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.09649197654471782
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": -0.003502776982882657
+        }
+      ]
+    },
+    {
+      "id": "q-rollback-l",
+      "kind": "lexical",
+      "expectedLabel": "ROLLBACK",
+      "text": "How does rollback restore the incumbent after a failed canary?",
+      "lexical": [
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.5
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.2
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.2
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.1
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.1
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.1
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.1
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.1
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.1
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.1
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.1
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.1
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.1
+        }
+      ],
+      "dense": [
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.49676380589568186
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.34179703931815036
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.2643177903720375
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.2605844649748204
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.2491048886915339
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.23702734708367046
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.21168044003290243
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.20221232981885134
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.14597187375838533
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.1368578376165047
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.1290450466927832
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.10417487561906108
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.07836557398332979
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.028436087374597463
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.0035500711441349498
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": -0.005965666174988748
+        }
+      ],
+      "union": [
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.5
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.2
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.2
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.1
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.1
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.1
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.1
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.1
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.1
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.1
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.1
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.1
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.1
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.21168044003290243
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.14597187375838533
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.10417487561906108
+        }
+      ]
+    },
+    {
+      "id": "q-rollback-p",
+      "kind": "paraphrase",
+      "expectedLabel": "ROLLBACK",
+      "text": "Where should a trial place reversible bytes so failure leaves production untouched?",
+      "lexical": [
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.08333333333333333
+        }
+      ],
+      "dense": [
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.37116526771073355
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.30544638580011013
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.2480792331496253
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.21921856235375695
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.20642075151022993
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.18489629284754525
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.16523887146566812
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.16349734458342766
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.15734700900353338
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.15234209087912362
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.14880873914926218
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.14026630464983791
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.12230070122563134
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.1210987853575562
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.11422570348991104
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.016511093259118603
+        }
+      ],
+      "union": [
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.16666666666666666
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.08333333333333333
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.37116526771073355
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.30544638580011013
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.18489629284754525
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.16349734458342766
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.15734700900353338
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.15234209087912362
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.14026630464983791
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.11422570348991104
+        }
+      ]
+    },
+    {
+      "id": "q-frontier-l",
+      "kind": "lexical",
+      "expectedLabel": "LEGAL_FRONTIER",
+      "text": "Which legal frontier separates READY from mentioned work?",
+      "lexical": [
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.625
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.25
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.25
+        }
+      ],
+      "dense": [
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.3873670720614276
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.36015828315388776
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.310095893004171
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.2858533586976053
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.1992599144257729
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.16821079548737594
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.14647112248506203
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.14317326508939254
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.11942608515142082
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.11645301582860774
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.08412389915076465
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.07719285194343607
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.07036890167760027
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.0668182236706078
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.060424481947120065
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.009417387164628019
+        }
+      ],
+      "union": [
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.625
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.25
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.25
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.310095893004171
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.1992599144257729
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.16821079548737594
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.14647112248506203
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.14317326508939254
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.11942608515142082
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.11645301582860774
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.08412389915076465
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.07719285194343607
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.07036890167760027
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.0668182236706078
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.060424481947120065
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.009417387164628019
+        }
+      ]
+    },
+    {
+      "id": "q-frontier-p",
+      "kind": "paraphrase",
+      "expectedLabel": "LEGAL_FRONTIER",
+      "text": "Which source tells me today's lawful next move instead of everything someone proposed?",
+      "lexical": [
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.07142857142857142
+        }
+      ],
+      "dense": [
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.26305319579932285
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.24377929277256516
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.19842138508305646
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.17831160128211257
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.15568930207957993
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.146654457037769
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.14206852486175903
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.12970771541661352
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.10113372452176211
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.08369394835212426
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.07353298698322802
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.06860358007383388
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.06424749542770093
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.05108571291119002
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.04168041753642667
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.026888025222453465
+        }
+      ],
+      "union": [
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.24377929277256516
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.17831160128211257
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.15568930207957993
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.146654457037769
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.14206852486175903
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.12970771541661352
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.10113372452176211
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.08369394835212426
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.07353298698322802
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.06860358007383388
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.06424749542770093
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.05108571291119002
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.04168041753642667
+        }
+      ]
+    },
+    {
+      "id": "q-effect-l",
+      "kind": "lexical",
+      "expectedLabel": "EFFECT_COMMITMENT",
+      "text": "How is an effect commitment reconciled after an outbox intent?",
+      "lexical": [
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.4444444444444444
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.2222222222222222
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.2222222222222222
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.1111111111111111
+        }
+      ],
+      "dense": [
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.5919507676627306
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.5400658279059052
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.23594756009642742
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.23454070089772242
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.23385789014316813
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.21170472289010817
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.18613399315631254
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.18458155195030118
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.17195119827555136
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1591520784556276
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.1473318883213553
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.14427193708698166
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.13651884348466622
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.07577362584226718
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.05495471742589483
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.0409367638587603
+        }
+      ],
+      "union": [
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.4444444444444444
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.2222222222222222
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.2222222222222222
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.23454070089772242
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.21170472289010817
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.18613399315631254
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1591520784556276
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.14427193708698166
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.05495471742589483
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.0409367638587603
+        }
+      ]
+    },
+    {
+      "id": "q-effect-p",
+      "kind": "paraphrase",
+      "expectedLabel": "EFFECT_COMMITMENT",
+      "text": "A remote API timed out after sending; how do we avoid doing it twice?",
+      "lexical": [
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.14285714285714285
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.07142857142857142
+        }
+      ],
+      "dense": [
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.26061085603609024
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.1455090347575879
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.13099117792902623
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.12088810581723068
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.08863211570464455
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.06942181310114087
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.06013594511307162
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.038654458729333076
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.03226820391099547
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.027217029737767254
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.020923731423098925
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.010341208998330348
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.002576825893426323
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": -0.01219198134664225
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": -0.01979561235513358
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": -0.02007178484551344
+        }
+      ],
+      "union": [
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.14285714285714285
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.07142857142857142
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.26061085603609024
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.13099117792902623
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.08863211570464455
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.03226820391099547
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.027217029737767254
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.020923731423098925
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.002576825893426323
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": -0.01219198134664225
+        }
+      ]
+    },
+    {
+      "id": "q-edge-l",
+      "kind": "lexical",
+      "expectedLabel": "PRODUCER_CONSUMER",
+      "text": "What producer consumer edge proves a receptor is functional?",
+      "lexical": [
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.4444444444444444
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.4444444444444444
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.2222222222222222
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.2222222222222222
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.1111111111111111
+        }
+      ],
+      "dense": [
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.7224819534024957
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.49598082947258176
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.3112511830255946
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.21203467778119256
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.17854333840586767
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.1766661490590761
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.17419041732929538
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1716034499868173
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.15557730560132516
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.11287863687849503
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.08550671397839353
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.07081181344718879
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.06785997581806053
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.03716639724173348
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.02287816768320242
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": -0.04244013290971098
+        }
+      ],
+      "union": [
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.4444444444444444
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.4444444444444444
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.2222222222222222
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.2222222222222222
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.1111111111111111
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.17419041732929538
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.15557730560132516
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.07081181344718879
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.06785997581806053
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.03716639724173348
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.02287816768320242
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": -0.04244013290971098
+        }
+      ]
+    },
+    {
+      "id": "q-edge-p",
+      "kind": "paraphrase",
+      "expectedLabel": "PRODUCER_CONSUMER",
+      "text": "What demonstrates that a new sensor improved behavior rather than becoming dead code?",
+      "lexical": [
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.23076923076923078
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.07692307692307693
+        }
+      ],
+      "dense": [
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.3733241142424968
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.3403205009136061
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.3133398698735854
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.2909916295482524
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.24844150970220577
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.23265035806567413
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1825212002589626
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.1813599934722577
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.18043543417196178
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.16495110639118135
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.15396443066787627
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.1393622808371581
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.125654365924457
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.05147844510019742
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.04903720418602904
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": -0.002796917343944484
+        }
+      ],
+      "union": [
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.23076923076923078
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.07692307692307693
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.23265035806567413
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1825212002589626
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.1813599934722577
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.18043543417196178
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.16495110639118135
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.15396443066787627
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.1393622808371581
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.125654365924457
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.05147844510019742
+        }
+      ]
+    },
+    {
+      "id": "q-owner-x",
+      "kind": "exact",
+      "expectedLabel": "STATE_OWNER",
+      "text": "src/forecast/store.mjs",
+      "lexical": [
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 11
+        }
+      ],
+      "dense": [
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.5691570897994633
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.15018466862595778
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.11486405881766168
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.10631623082866276
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.10483822119488907
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.07673972064415602
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.06529746181332116
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.05958145880235177
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.05609799272099664
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.05228621804864257
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.010849212421689512
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.007063947792877936
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": -0.004219347203578144
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": -0.013394871572862132
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": -0.0405059083701091
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": -0.05985061790959941
+        }
+      ],
+      "union": [
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 11
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.15018466862595778
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.11486405881766168
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.10631623082866276
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.10483822119488907
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.07673972064415602
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.06529746181332116
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.05958145880235177
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.05609799272099664
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.05228621804864257
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.010849212421689512
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.007063947792877936
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": -0.004219347203578144
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": -0.013394871572862132
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": -0.0405059083701091
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": -0.05985061790959941
+        }
+      ]
+    },
+    {
+      "id": "q-authority-x",
+      "kind": "exact",
+      "expectedLabel": "AUTHORITY_GATE",
+      "text": "BIBLE-00",
+      "lexical": [
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 11
+        }
+      ],
+      "dense": [
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.46524145838415665
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.18362535666252605
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.11083403662887306
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.06416367108928575
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.060216500098307535
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.04983744592733429
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.04485252824790392
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.043710519236914394
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.039894255145626924
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.027500245329780543
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.02545871703534548
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.024330975801905217
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.006393867860875547
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": -0.006126493220389072
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": -0.010668215529615941
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": -0.018788424543217587
+        }
+      ],
+      "union": [
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 11
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.18362535666252605
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.11083403662887306
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.06416367108928575
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.060216500098307535
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.04983744592733429
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.04485252824790392
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.043710519236914394
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.039894255145626924
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.027500245329780543
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.02545871703534548
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.024330975801905217
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.006393867860875547
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": -0.006126493220389072
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": -0.010668215529615941
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": -0.018788424543217587
+        }
+      ]
+    },
+    {
+      "id": "q-receipt-x",
+      "kind": "exact",
+      "expectedLabel": "EVIDENCE_RECEIPT",
+      "text": "BuilderReceiptV2",
+      "lexical": [
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 11
+        }
+      ],
+      "dense": [
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.6838496866405069
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.21314106259786442
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1452179207462828
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.1339123328576407
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.11640405149227945
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.11075567716752088
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.09289310793715631
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.08944992000321378
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.0869338305384289
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.0823580197663153
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.0661113067680148
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.05486640867345019
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.05023431729000669
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.03679016466569888
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.025539458255809333
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": -0.002743956363380583
+        }
+      ],
+      "union": [
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 11
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.21314106259786442
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1452179207462828
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.1339123328576407
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.11640405149227945
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.11075567716752088
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.09289310793715631
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.08944992000321378
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.0869338305384289
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.0823580197663153
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.0661113067680148
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.05486640867345019
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.05023431729000669
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.03679016466569888
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.025539458255809333
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": -0.002743956363380583
+        }
+      ]
+    },
+    {
+      "id": "q-continuity-x",
+      "kind": "exact",
+      "expectedLabel": "DURABLE_CONTINUITY",
+      "text": "mission.db",
+      "lexical": [
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 11
+        }
+      ],
+      "dense": [
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.38577800942692786
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.38117875476925384
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.23125893010776247
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.168918706585598
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.16015418857055913
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.11440858785053896
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.11076938785804191
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.08485981735210618
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.07406362295042862
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.06854717368546334
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.06566260373001923
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.06213607852033887
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.06094572589043125
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.04656061439487003
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.03394817961452627
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": -0.021865629693184424
+        }
+      ],
+      "union": [
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 11
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.38577800942692786
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.23125893010776247
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.168918706585598
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.16015418857055913
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.11440858785053896
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.11076938785804191
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.08485981735210618
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.07406362295042862
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.06854717368546334
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.06566260373001923
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.06213607852033887
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.06094572589043125
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.04656061439487003
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.03394817961452627
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": -0.021865629693184424
+        }
+      ]
+    },
+    {
+      "id": "q-rollback-x",
+      "kind": "exact",
+      "expectedLabel": "ROLLBACK",
+      "text": "side-index:semantic-v1",
+      "lexical": [
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 11
+        }
+      ],
+      "dense": [
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.6453070093967084
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.33659698034051966
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.20684491636098085
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.16715638456095006
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.1541081546385849
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.15252633647974784
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.1440732803954701
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.12226942622965192
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.11758131710420745
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1141991969958577
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.10201002123195496
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.09161410104011067
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.05079178965768946
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.004823342133778446
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.0013112964923906942
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": -0.036417851784440874
+        }
+      ],
+      "union": [
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 11
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.33659698034051966
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.20684491636098085
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.16715638456095006
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.1541081546385849
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.15252633647974784
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.1440732803954701
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.12226942622965192
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.11758131710420745
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.1141991969958577
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.10201002123195496
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.09161410104011067
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.05079178965768946
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.004823342133778446
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.0013112964923906942
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": -0.036417851784440874
+        }
+      ]
+    },
+    {
+      "id": "q-frontier-x",
+      "kind": "exact",
+      "expectedLabel": "LEGAL_FRONTIER",
+      "text": "1217755807389746",
+      "lexical": [
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 11
+        }
+      ],
+      "dense": [
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.37317226875185605
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.11225362067878088
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.10840478833532785
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.06089306145060942
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.058117394785934515
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.03610803326355879
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.024436688679356697
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.02430586404484487
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.017472599630745673
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.01477649368572605
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.004321054523400642
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.001585539172789155
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.001134540131234157
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": -0.012381061173375247
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": -0.02601824644978968
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": -0.035763099936415355
+        }
+      ],
+      "union": [
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 11
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.11225362067878088
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.10840478833532785
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.06089306145060942
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.058117394785934515
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.03610803326355879
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.024436688679356697
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.02430586404484487
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.017472599630745673
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.01477649368572605
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.004321054523400642
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.001585539172789155
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.001134540131234157
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": -0.012381061173375247
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": -0.02601824644978968
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": -0.035763099936415355
+        }
+      ]
+    },
+    {
+      "id": "q-effect-x",
+      "kind": "exact",
+      "expectedLabel": "EFFECT_COMMITMENT",
+      "text": "darwin.effect-receipt.v1",
+      "lexical": [
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 11
+        }
+      ],
+      "dense": [
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.8134428980936078
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.3814286638779664
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.36748497198877816
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.30113733770213236
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.23404417967016752
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.2278593275316673
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.21090170025600558
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.18700168197136283
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.18580410391049046
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.15365843309951585
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.14607944060704486
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.14351993860695997
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.11046791910408267
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.10903249019396208
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.10823325020845942
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.10573529217829311
+        }
+      ],
+      "union": [
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 11
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.3814286638779664
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.36748497198877816
+        },
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.30113733770213236
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.23404417967016752
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": 0.2278593275316673
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.21090170025600558
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.18700168197136283
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.18580410391049046
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.15365843309951585
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": 0.14607944060704486
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.14351993860695997
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.11046791910408267
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.10903249019396208
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": 0.10823325020845942
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.10573529217829311
+        }
+      ]
+    },
+    {
+      "id": "q-edge-x",
+      "kind": "exact",
+      "expectedLabel": "PRODUCER_CONSUMER",
+      "text": "hf-semantic-receptor-001",
+      "lexical": [
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 11
+        }
+      ],
+      "dense": [
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.7717264534136274
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.2941761956954939
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.2888348477251014
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.25190162094420254
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.1679450193554016
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.15685783730409733
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.15226142506389614
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.1296606053267248
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.11901939567550021
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.08863525537545722
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.07361155327966279
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.0026016419557416005
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": -0.00020939904273799617
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": -0.0030018079161374207
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": -0.010509447393042187
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": -0.020275223823717773
+        }
+      ],
+      "union": [
+        {
+          "id": "edge-1",
+          "label": "PRODUCER_CONSUMER",
+          "score": 11
+        },
+        {
+          "id": "edge-2",
+          "label": "PRODUCER_CONSUMER",
+          "score": 0.2941761956954939
+        },
+        {
+          "id": "rollback-1",
+          "label": "ROLLBACK",
+          "score": 0.2888348477251014
+        },
+        {
+          "id": "continuity-1",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.25190162094420254
+        },
+        {
+          "id": "frontier-2",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.1679450193554016
+        },
+        {
+          "id": "receipt-1",
+          "label": "EVIDENCE_RECEIPT",
+          "score": 0.15685783730409733
+        },
+        {
+          "id": "owner-1",
+          "label": "STATE_OWNER",
+          "score": 0.15226142506389614
+        },
+        {
+          "id": "effect-1",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.1296606053267248
+        },
+        {
+          "id": "effect-2",
+          "label": "EFFECT_COMMITMENT",
+          "score": 0.11901939567550021
+        },
+        {
+          "id": "frontier-1",
+          "label": "LEGAL_FRONTIER",
+          "score": 0.08863525537545722
+        },
+        {
+          "id": "continuity-2",
+          "label": "DURABLE_CONTINUITY",
+          "score": 0.07361155327966279
+        },
+        {
+          "id": "owner-2",
+          "label": "STATE_OWNER",
+          "score": 0.0026016419557416005
+        },
+        {
+          "id": "receipt-2",
+          "label": "EVIDENCE_RECEIPT",
+          "score": -0.00020939904273799617
+        },
+        {
+          "id": "rollback-2",
+          "label": "ROLLBACK",
+          "score": -0.0030018079161374207
+        },
+        {
+          "id": "authority-2",
+          "label": "AUTHORITY_GATE",
+          "score": -0.010509447393042187
+        },
+        {
+          "id": "authority-1",
+          "label": "AUTHORITY_GATE",
+          "score": -0.020275223823717773
+        }
+      ]
+    }
+  ]
+}
