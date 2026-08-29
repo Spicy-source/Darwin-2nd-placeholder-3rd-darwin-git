@@ -1,0 +1,61 @@
+{
+  "protocol": "darwin.assimilation-source-reinspection/v1",
+  "inspected_at": "2026-08-29T22:33:45.0145081Z",
+  "provider": "github",
+  "repository": "Spicy-source/Darwin-2nd-placeholder-3rd-darwin-git",
+  "publication_commit": "0f4b4b259f96ffe752f6669320d75f1a614bc4df",
+  "decision_id": "hf-semantic-receptor-001",
+  "candidate": {
+    "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "license": "apache-2.0"
+  },
+  "status": "PASS_EXACT_PROVIDER_BYTES",
+  "artifacts": [
+    {
+      "role": "final_decision",
+      "path": "assimilation/hf-semantic-receptor-001.json",
+      "bytes": 8276,
+      "sha256": "92a131fa146bba9dec09ba9bec6e327db542a171bbd0c77f13635d4ae6fde080",
+      "provider_blob_sha": "02dc9227bcc0328dca1bf4b4376e9396b96e6d33"
+    },
+    {
+      "role": "canary_result",
+      "path": "assimilation/evidence/hf-semantic-canary-v2.result.json",
+      "bytes": 122908,
+      "sha256": "32584563ac1b8542cb359a1c079fb7637c100958c847038eaf555da85d53ed42",
+      "provider_blob_sha": "bdb28b31aeb04ee9711fb0f48134f50978d6c3e9"
+    },
+    {
+      "role": "canary_source",
+      "path": "assimilation/evidence/hf-semantic-canary-v2.mjs",
+      "bytes": 14409,
+      "sha256": "175ca006e75f8da5b173d9712a8283ef772b251b40913c8dd01093e7a043d851",
+      "provider_blob_sha": "b1a22c63ec361c12af024debfe36491406a15e14"
+    },
+    {
+      "role": "model_api_body",
+      "path": "assimilation/evidence/hf-model-api.raw",
+      "bytes": 7075,
+      "sha256": "3b1b9883b1614aa13553d4a518bd4d567b62b04413e32f25c43913aa7080e2fa",
+      "provider_blob_sha": "595a1c7dd02318b7846a1e673f2b1f5461faa6eb"
+    },
+    {
+      "role": "model_tree",
+      "path": "assimilation/evidence/hf-model-tree-1110a243.raw",
+      "bytes": 6465,
+      "sha256": "a6bdcf69a3000dcb5803e8218c06852045afd16262d01b75c98cbfa17dc736a6",
+      "provider_blob_sha": "a1f42646858561084ef614f0ffe74601d059b886"
+    },
+    {
+      "role": "model_card",
+      "path": "assimilation/evidence/hf-model-card-1110a243.raw",
+      "bytes": 10502,
+      "sha256": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+      "provider_blob_sha": "44af2e3b0fa3a0b6239e48422972bf755f28fde0"
+    }
+  ],
+  "decision": "REJECT_RETAIN_LEXICAL_BASELINE",
+  "method": "Authenticated GitHub Contents API reads at the immutable publication commit; provider blobs and locally computed SHA-256 hashes were matched for every bound artifact.",
+  "claim_ceiling": "PROVES_FINAL_ASSIMILATION_SOURCE_BYTES_NOT_MODEL_ADOPTION_NOT_PRODUCTION_BENEFIT"
+}
