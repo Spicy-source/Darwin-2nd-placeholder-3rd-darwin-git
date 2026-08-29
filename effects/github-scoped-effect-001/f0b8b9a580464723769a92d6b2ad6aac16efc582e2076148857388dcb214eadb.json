@@ -1,0 +1,10 @@
+{
+  "claim_ceiling": "REAL_PROVIDER_SCOPED_SAME_REPOSITORY_CONTENT_EFFECT_WITH_PROVIDER_REINSPECTION_ONLY_NOT_GENERAL_AUTHORITY_NOT_AUTONOMY_NOT_RETENTION_NOT_BENEFIT",
+  "effect_id": "github-scoped-effect-001",
+  "intent_sha256": "f0b8b9a580464723769a92d6b2ad6aac16efc582e2076148857388dcb214eadb",
+  "protocol": "darwin.github-scoped-effect-receipt/v1",
+  "repository": "Spicy-source/Darwin-2nd-placeholder-3rd-darwin-git",
+  "result": "PROVIDER_CONTENT_COMMITTED",
+  "target_branch": "main",
+  "target_path": "effects/github-scoped-effect-001/f0b8b9a580464723769a92d6b2ad6aac16efc582e2076148857388dcb214eadb.json"
+}
