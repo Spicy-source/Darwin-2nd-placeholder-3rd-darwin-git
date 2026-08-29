@@ -1,0 +1,63 @@
+{
+  "protocol": "darwin.hf-public-observation-canary.verifier/v1",
+  "verified_at": "2026-08-29T22:27:24.7332036Z",
+  "status": "PASS_WITHIN_CLAIM",
+  "issue": "https://github.com/Spicy-source/Darwin-2/issues/4",
+  "source": {
+    "repository": "Spicy-source/Darwin-2",
+    "revision": "3010aa0e697de9df2f851da2e9524889f9b1d62b",
+    "tree": "b50674303a299485b97920d5bc63067a79929f19",
+    "hub_origin": "https://huggingface.co",
+    "episode_key": "hf-public-observation-001-2",
+    "sampling_frame": "likes"
+  },
+  "artifacts": [
+    {
+      "path": "assimilation/hf-public-observation-001.producer.json",
+      "bytes": 1425698,
+      "sha256": "398cd4ef708b8f399705f2736b4eb0c069d6a2ed6fbd6c1b492c4c40dedfcbd2"
+    },
+    {
+      "path": "assimilation/evidence/hf-public-observation-001.journal.sqlite",
+      "bytes": 4198400,
+      "sha256": "f74c32995417a5042188fab5771ff969cc34f9fba93f7187ebc61ca17da69a84"
+    },
+    {
+      "path": "assimilation/evidence/hf-public-observation-001.runner.mjs",
+      "bytes": 5142,
+      "sha256": "e77fcaefd766f4c480b10e807d75f48cf0e7e64cb9a31dd9ff391b90a529851c"
+    }
+  ],
+  "reconstructed": {
+    "journal_rows": 88,
+    "journal_sequence": "contiguous_unique_0_through_87",
+    "journal_result_sha256": "b7e81d42ff8261b30df0e23fb0de71104989c0ab6cbf75208f6c14041b2ece42",
+    "evidence_bundle_sha256": "7bc531f9d9e895ee89c52f76c3600313c526fc01c46148671a42f9668c2f947a",
+    "candidates": 80,
+    "truth_records": 80,
+    "provider_calls_reported": 81,
+    "replay_provider_call_delta": 0,
+    "mode": "unattested",
+    "retention_status": "QUARANTINED_PENDING_PROVIDER_REINSPECTION",
+    "genome_retained_rows": 0,
+    "external_effect_rows": 0
+  },
+  "verification": [
+    "raw listing hash and canonical projection equal all 80 committed candidates",
+    "stored prediction clock, weights and pairs reproduce every prediction",
+    "all 80 unique truth rows bind a fixed Hugging Face model URL, GMT provider Date, raw hash, parsed model id and downloads",
+    "settled truth is covered one-to-one by raw provider evidence",
+    "terminal Benefit and ranking recompute from committed predictions and truth",
+    "exact replay through the committed Darwin source returns the same terminal result with zero provider calls",
+    "the Hub port sends no Authorization header",
+    "Windows DarwinOrganismHeartbeat and GitHub organism workflow remain disabled"
+  ],
+  "provider_reinspection_sample": {
+    "sample_size": 3,
+    "http_200": 3,
+    "downloads_match": 3,
+    "raw_bytes_match": 2,
+    "note": "one mutable model metadata response changed bytes while its downloads value remained equal; no immutable-provider or authority claim is made"
+  },
+  "claim_ceiling": "REAL_PUBLIC_HF_OBSERVATION_TO_DURABLE_LOCAL_QUARANTINE_DECISION_ONLY_NOT_PROVIDER_AUTHORITY_NOT_EFFECT_NOT_BENEFIT_NOT_RETENTION"
+}
