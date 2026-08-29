@@ -1,0 +1,37 @@
+{
+  "protocol": "darwin.provider-reinspection/1",
+  "inspected_at": "2026-08-29T22:29:17.8239082Z",
+  "provider": "github",
+  "repository": "Spicy-source/Darwin-2nd-placeholder-3rd-darwin-git",
+  "branch": "main",
+  "publication_commit": "c8c74127b008a6e03058d0930ac365845dfcb526",
+  "status": "PASS_EXACT_PROVIDER_BYTES",
+  "files": [
+    {
+      "path": "assimilation/hf-public-observation-001.producer.json",
+      "bytes": 1425698,
+      "sha256": "398cd4ef708b8f399705f2736b4eb0c069d6a2ed6fbd6c1b492c4c40dedfcbd2",
+      "provider_blob_sha": "db4e336c8c34a6c4fff4c76433da8d50f64ef84c"
+    },
+    {
+      "path": "assimilation/hf-public-observation-001.verifier.json",
+      "bytes": 2849,
+      "sha256": "36a4cea0340808233511c94a90d10ab34382a5f741fbe43e7bd7f1e2a7547e7a",
+      "provider_blob_sha": "98b2a1558fff3d292180b117b101e289025f7776"
+    },
+    {
+      "path": "assimilation/evidence/hf-public-observation-001.journal.sqlite",
+      "bytes": 4198400,
+      "sha256": "f74c32995417a5042188fab5771ff969cc34f9fba93f7187ebc61ca17da69a84",
+      "provider_blob_sha": "37e2df355217a1bb403c4d4b24cadc1fe52ee324"
+    },
+    {
+      "path": "assimilation/evidence/hf-public-observation-001.runner.mjs",
+      "bytes": 5142,
+      "sha256": "e77fcaefd766f4c480b10e807d75f48cf0e7e64cb9a31dd9ff391b90a529851c",
+      "provider_blob_sha": "9447379de62c0608e521b6e07b0952e54ac0534d"
+    }
+  ],
+  "method": "Authenticated GitHub Contents API metadata plus raw-media reads at the immutable publication commit; every provider response was locally SHA-256 hashed and compared with the committed artifact.",
+  "claim_ceiling": "PROVES_PUBLICATION_BYTES_AT_ONE_GITHUB_COMMIT_NOT_HF_PROVIDER_AUTHORITY_NOT_EFFECT_NOT_BENEFIT_NOT_RETENTION"
+}
