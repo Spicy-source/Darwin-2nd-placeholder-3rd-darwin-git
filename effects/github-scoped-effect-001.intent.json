@@ -1,0 +1,10 @@
+{
+  "authority": "github-actions-job-github-token",
+  "claim_ceiling": "REAL_PROVIDER_SCOPED_SAME_REPOSITORY_CONTENT_EFFECT_WITH_PROVIDER_REINSPECTION_ONLY_NOT_GENERAL_AUTHORITY_NOT_AUTONOMY_NOT_RETENTION_NOT_BENEFIT",
+  "effect_id": "github-scoped-effect-001",
+  "method": "PUT",
+  "protocol": "darwin.github-scoped-effect-intent/v1",
+  "repository": "Spicy-source/Darwin-2nd-placeholder-3rd-darwin-git",
+  "target_branch": "main",
+  "target_path_prefix": "effects/github-scoped-effect-001/"
+}

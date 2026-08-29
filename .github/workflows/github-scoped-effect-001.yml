@@ -1,0 +1,215 @@
+name: github-scoped-effect-001
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: github-scoped-effect-001-main
+  cancel-in-progress: false
+
+jobs:
+  commit-fixed-receipt:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Commit exact receipt with repository-scoped token
+        shell: bash
+        env:
+          ACTOR: ${{ github.actor }}
+          ACTOR_ID: ${{ github.actor_id }}
+          API_URL: ${{ github.api_url }}
+          EVENT_NAME: ${{ github.event_name }}
+          INPUTS_JSON: ${{ toJSON(inputs) }}
+          REF: ${{ github.ref }}
+          REPOSITORY: ${{ github.repository }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+          RUN_ID: ${{ github.run_id }}
+          SHA: ${{ github.sha }}
+          TOKEN: ${{ github.token }}
+          TRIGGERING_ACTOR: ${{ github.triggering_actor }}
+          WORKFLOW_REF: ${{ github.workflow_ref }}
+          WORKFLOW_SHA: ${{ github.workflow_sha }}
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import { createHash } from "node:crypto";
+
+          const REPOSITORY = "Spicy-source/Darwin-2nd-placeholder-3rd-darwin-git";
+          const BRANCH = "main";
+          const INTENT_PATH = "effects/github-scoped-effect-001.intent.json";
+          const INTENT_SHA256 = "f0b8b9a580464723769a92d6b2ad6aac16efc582e2076148857388dcb214eadb";
+          const RECEIPT_SHA256 = "248d0d7666d6f0551f24ea362ee6b6134661c59a68a6501d299b13c6435e3ed0";
+          const CLAIM_CEILING = "REAL_PROVIDER_SCOPED_SAME_REPOSITORY_CONTENT_EFFECT_WITH_PROVIDER_REINSPECTION_ONLY_NOT_GENERAL_AUTHORITY_NOT_AUTONOMY_NOT_RETENTION_NOT_BENEFIT";
+          const TARGET_PATH = `effects/github-scoped-effect-001/${INTENT_SHA256}.json`;
+
+          function refuse(code, detail = null) {
+            throw new Error(JSON.stringify({ disposition: "REFUSE", code, detail }));
+          }
+
+          function sha256(bytes) {
+            return createHash("sha256").update(bytes).digest("hex");
+          }
+
+          function gitBlobSha(bytes) {
+            return createHash("sha1")
+              .update(`blob ${bytes.length}\0`)
+              .update(bytes)
+              .digest("hex");
+          }
+
+          function decodeContent(value, expectedPath) {
+            if (value?.type !== "file" || value.path !== expectedPath || value.encoding !== "base64") {
+              refuse("CONTENT_RESPONSE_MISBOUND", { path: value?.path, type: value?.type, encoding: value?.encoding });
+            }
+            const encoded = value.content.replace(/\s/g, "");
+            const bytes = Buffer.from(encoded, "base64");
+            if (bytes.toString("base64") !== encoded || bytes.length !== value.size || gitBlobSha(bytes) !== value.sha) {
+              refuse("CONTENT_RESPONSE_INTEGRITY_FAILED", { path: expectedPath });
+            }
+            return bytes;
+          }
+
+          function contentUrl(path, ref = null) {
+            const root = new URL(process.env.API_URL);
+            if (root.origin !== "https://api.github.com" || root.pathname !== "/") {
+              refuse("API_ORIGIN_REFUSED", process.env.API_URL);
+            }
+            root.pathname = `/repos/${REPOSITORY}/contents/${path.split("/").map(encodeURIComponent).join("/")}`;
+            if (ref) root.searchParams.set("ref", ref);
+            return root;
+          }
+
+          async function request(method, url, body = undefined) {
+            if (url.origin !== "https://api.github.com") refuse("API_ORIGIN_REFUSED", url.origin);
+            const response = await fetch(url, {
+              method,
+              redirect: "error",
+              headers: {
+                Accept: "application/vnd.github+json",
+                Authorization: `Bearer ${process.env.TOKEN}`,
+                "Content-Type": "application/json",
+                "X-GitHub-Api-Version": "2022-11-28",
+              },
+              body,
+            });
+            const raw = Buffer.from(await response.arrayBuffer());
+            let json = null;
+            if (raw.length) {
+              try {
+                json = JSON.parse(raw.toString("utf8"));
+              } catch {
+                refuse("PROVIDER_NON_JSON_RESPONSE", { method, status: response.status });
+              }
+            }
+            return { json, status: response.status };
+          }
+
+          if (process.env.EVENT_NAME !== "workflow_dispatch") refuse("EVENT_REFUSED", process.env.EVENT_NAME);
+          if (process.env.REPOSITORY !== REPOSITORY) refuse("REPOSITORY_REFUSED", process.env.REPOSITORY);
+          if (process.env.REF !== "refs/heads/main") refuse("REF_REFUSED", process.env.REF);
+          if (process.env.SHA !== process.env.WORKFLOW_SHA) refuse("WORKFLOW_SHA_MISMATCH");
+          if (process.env.WORKFLOW_REF !== `${REPOSITORY}/.github/workflows/github-scoped-effect-001.yml@refs/heads/main`) {
+            refuse("WORKFLOW_REF_REFUSED", process.env.WORKFLOW_REF);
+          }
+          if (!process.env.TOKEN) refuse("TOKEN_MISSING");
+
+          let inputs;
+          try {
+            inputs = JSON.parse(process.env.INPUTS_JSON || "{}");
+          } catch {
+            refuse("INPUTS_MALFORMED");
+          }
+          if (Object.keys(inputs).length !== 0) refuse("INPUTS_REFUSED", Object.keys(inputs));
+
+          const intentResponse = await request("GET", contentUrl(INTENT_PATH, process.env.WORKFLOW_SHA));
+          if (intentResponse.status !== 200) refuse("INTENT_UNREADABLE", intentResponse.status);
+          const intentBytes = decodeContent(intentResponse.json, INTENT_PATH);
+          if (sha256(intentBytes) !== INTENT_SHA256) refuse("INTENT_HASH_DRIFT");
+
+          const expectedIntent = {
+            authority: "github-actions-job-github-token",
+            claim_ceiling: CLAIM_CEILING,
+            effect_id: "github-scoped-effect-001",
+            method: "PUT",
+            protocol: "darwin.github-scoped-effect-intent/v1",
+            repository: REPOSITORY,
+            target_branch: BRANCH,
+            target_path_prefix: "effects/github-scoped-effect-001/",
+          };
+          let intent;
+          try {
+            intent = JSON.parse(intentBytes.toString("utf8"));
+          } catch {
+            refuse("INTENT_MALFORMED");
+          }
+          if (JSON.stringify(intent) !== JSON.stringify(expectedIntent)) refuse("INTENT_SEMANTIC_DRIFT");
+
+          const receipt = {
+            claim_ceiling: CLAIM_CEILING,
+            effect_id: "github-scoped-effect-001",
+            intent_sha256: INTENT_SHA256,
+            protocol: "darwin.github-scoped-effect-receipt/v1",
+            repository: REPOSITORY,
+            result: "PROVIDER_CONTENT_COMMITTED",
+            target_branch: BRANCH,
+            target_path: TARGET_PATH,
+          };
+          const receiptBytes = Buffer.from(`${JSON.stringify(receipt, null, 2)}\n`);
+          if (sha256(receiptBytes) !== RECEIPT_SHA256) refuse("RECEIPT_HASH_DRIFT");
+
+          const targetUrl = contentUrl(TARGET_PATH, BRANCH);
+          let existing = await request("GET", targetUrl);
+          let disposition;
+          let commitSha = null;
+          let contentSha = gitBlobSha(receiptBytes);
+
+          if (existing.status === 200) {
+            if (!decodeContent(existing.json, TARGET_PATH).equals(receiptBytes)) refuse("COLLISION_REFUSE");
+            disposition = "ALREADY_EXACT";
+          } else if (existing.status === 404) {
+            const create = await request(
+              "PUT",
+              contentUrl(TARGET_PATH),
+              JSON.stringify({
+                branch: BRANCH,
+                content: receiptBytes.toString("base64"),
+                message: "github-scoped-effect-001: commit fixed receipt",
+              }),
+            );
+            if (create.status === 201) {
+              if (create.json?.content?.path !== TARGET_PATH || create.json?.content?.sha !== contentSha || !/^[0-9a-f]{40}$/.test(create.json?.commit?.sha || "")) {
+                refuse("CREATE_RESPONSE_MISBOUND");
+              }
+              disposition = "CREATED";
+              commitSha = create.json.commit.sha;
+            } else if (create.status === 409 || create.status === 422) {
+              existing = await request("GET", targetUrl);
+              if (existing.status !== 200 || !decodeContent(existing.json, TARGET_PATH).equals(receiptBytes)) {
+                refuse("CONFLICT_NOT_EXACT", create.status);
+              }
+              disposition = "EXACT_AFTER_CONFLICT";
+            } else {
+              refuse("CREATE_FAILED", { status: create.status, message: create.json?.message });
+            }
+          } else {
+            refuse("INSPECT_FAILED", { status: existing.status, message: existing.json?.message });
+          }
+
+          console.log(JSON.stringify({
+            actor: process.env.ACTOR,
+            actor_id: process.env.ACTOR_ID,
+            commit_sha: commitSha,
+            content_sha: contentSha,
+            disposition,
+            intent_sha256: INTENT_SHA256,
+            receipt_sha256: RECEIPT_SHA256,
+            run_attempt: process.env.RUN_ATTEMPT,
+            run_id: process.env.RUN_ID,
+            target_path: TARGET_PATH,
+            triggering_actor: process.env.TRIGGERING_ACTOR,
+            workflow_sha: process.env.WORKFLOW_SHA,
+          }));
+          NODE
