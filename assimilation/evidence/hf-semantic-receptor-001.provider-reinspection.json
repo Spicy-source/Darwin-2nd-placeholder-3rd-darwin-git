@@ -1,0 +1,56 @@
+{
+  "schema": "darwin.provider-reinspection/1",
+  "inspected_at": "2026-08-29T21:26:31Z",
+  "provider": "github",
+  "repository": "Spicy-source/Darwin-2nd-placeholder-3rd-darwin-git",
+  "branch": "main",
+  "publication_commit": "cca6995ed98cf37cbbc6933a46e23ac8e94cc023",
+  "status": "PASS_EXACT_PROVIDER_BYTES",
+  "decision": {
+    "path": "assimilation/hf-semantic-receptor-001.json",
+    "bytes": 8075,
+    "sha256": "af52faf48e14b7a58fa45851125c673cf0a200982db80c627dd84d6a9d73b00f",
+    "provider_blob_sha": "0b1a9d1dc3dcb57a7cd157fea9fae9a05fe74245",
+    "result": "REJECT_RETAIN_LEXICAL_BASELINE"
+  },
+  "evidence": [
+    {
+      "path": "assimilation/evidence/hf-model-api.raw",
+      "bytes": 7075,
+      "sha256": "3b1b9883b1614aa13553d4a518bd4d567b62b04413e32f25c43913aa7080e2fa",
+      "provider_blob_sha": "595a1c7dd02318b7846a1e673f2b1f5461faa6eb"
+    },
+    {
+      "path": "assimilation/evidence/hf-model-card-1110a243.raw",
+      "bytes": 10502,
+      "sha256": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+      "provider_blob_sha": "44af2e3b0fa3a0b6239e48422972bf755f28fde0"
+    },
+    {
+      "path": "assimilation/evidence/hf-model-tree-1110a243.raw",
+      "bytes": 6465,
+      "sha256": "a6bdcf69a3000dcb5803e8218c06852045afd16262d01b75c98cbfa17dc736a6",
+      "provider_blob_sha": "a1f42646858561084ef614f0ffe74601d059b886"
+    },
+    {
+      "path": "assimilation/evidence/hf-semantic-canary-v2.mjs",
+      "bytes": 14409,
+      "sha256": "175ca006e75f8da5b173d9712a8283ef772b251b40913c8dd01093e7a043d851",
+      "provider_blob_sha": "b1a22c63ec361c12af024debfe36491406a15e14"
+    },
+    {
+      "path": "assimilation/evidence/hf-semantic-canary-v2.package-lock.json",
+      "bytes": 36571,
+      "sha256": "56d1f8de6eedff60cd198dcbf0e5b2fa12faf8c46923d3513144e79f1f73a88f",
+      "provider_blob_sha": "32f6a97696ad821d262c5d0b1b24bbea873fcf21"
+    },
+    {
+      "path": "assimilation/evidence/hf-semantic-canary-v2.result.json",
+      "bytes": 122908,
+      "sha256": "32584563ac1b8542cb359a1c079fb7637c100958c847038eaf555da85d53ed42",
+      "provider_blob_sha": "bdb28b31aeb04ee9711fb0f48134f50978d6c3e9"
+    }
+  ],
+  "method": "Authenticated GitHub Contents API read at the immutable publication commit; response content was base64-decoded and SHA-256 hashed locally.",
+  "claim_ceiling": "PROVES_PUBLICATION_BYTES_AT_ONE_GITHUB_COMMIT_NOT_MODEL_ADOPTION_NOT_PRODUCTION_BENEFIT"
+}

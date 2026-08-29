@@ -182,7 +182,10 @@
     "repository": "Spicy-source/Darwin-2nd-placeholder-3rd-darwin-git",
     "path": "assimilation/hf-semantic-receptor-001.json",
     "provider_reinspection": {
-      "status": "PENDING_AFTER_INITIAL_PUBLISH",
+      "status": "CONFIRMED",
+      "inspected_at": "2026-08-29T21:26:31Z",
+      "publication_commit": "cca6995ed98cf37cbbc6933a46e23ac8e94cc023",
+      "published_decision_sha256": "af52faf48e14b7a58fa45851125c673cf0a200982db80c627dd84d6a9d73b00f",
       "receipt_path": "assimilation/evidence/hf-semantic-receptor-001.provider-reinspection.json"
     }
   },
