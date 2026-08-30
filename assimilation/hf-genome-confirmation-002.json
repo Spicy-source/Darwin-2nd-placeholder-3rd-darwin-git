@@ -1,0 +1,46 @@
+{
+  "schema": "darwin.hf-genome-confirmation-decision/1",
+  "evaluation_id": "hf-genome-confirmation-002",
+  "result": "REJECT_NO_CROSS_COHORT_GENERALIZATION",
+  "candidate": {
+    "id": "genome:821ca59d4e0be0e3",
+    "weights": {
+      "likes": 1.4509,
+      "age": -0.2628,
+      "freshness": -0.3255,
+      "tags": -0.0581,
+      "pipeline": 0.1003,
+      "known_org": 0.2625,
+      "id_length": 0.2382
+    }
+  },
+  "baseline": {
+    "id": "named:likes",
+    "weights": {
+      "likes": 1,
+      "age": 0,
+      "freshness": 0,
+      "tags": 0,
+      "pipeline": 0,
+      "known_org": 0,
+      "id_length": 0
+    }
+  },
+  "metrics": {
+    "scoreable_pairs": 50,
+    "voided_pairs": 0,
+    "candidate_train_accuracy": 0.5,
+    "baseline_train_accuracy": 0.4,
+    "candidate_holdout_accuracy": 0.5,
+    "baseline_holdout_accuracy": 0.5,
+    "truth_evidence_count": 100,
+    "provider_successful_responses": 101,
+    "provider_http_attempts": 101
+  },
+  "result_sha256": "476ba9043a16fd469b33258bcdd1ccbc2c626087952a6b6b0ca866e3bacec318",
+  "evidence_index_sha256": "fbd372fd1c2ac7ca86a978e9de6b84398d1f9fe0adde82908d10096bb2619d39",
+  "evidence_root_sha256": "d9f956646c822504325fa93da3e6555e4997f753e9396283f195145b605fa511",
+  "promotion_admitted": false,
+  "retention_admitted": false,
+  "claim_ceiling": "REAL_PUBLIC_HF_THIRD_COHORT_CONFIRMATION_ONLY_NOT_PROMOTION_NOT_RETENTION_NOT_S09_NOT_AUTONOMY"
+}

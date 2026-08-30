@@ -1,0 +1,76 @@
+{
+  "schema": "darwin.hf-genome-confirmation-result/1",
+  "evaluation_id": "hf-genome-confirmation-002",
+  "evaluated_at": "Sun, 30 Aug 2026 06:22:31 GMT",
+  "source": {
+    "output_evidence": {
+      "repository": "Spicy-source/Darwin-2nd-placeholder-3rd-darwin-git",
+      "revision": "acd02aa90793f4ef3277e0d8ee94a518416d7bb8",
+      "tree": "7910747b93302d2a931042c8f3358f45bbc2506f",
+      "evidence_root_sha256": "11c6b3d89c8ca273c07893de5cf6b67ef8c9d769f8253d3c074ac8c9dc5247ac"
+    },
+    "population_origin": {
+      "repository": "Spicy-source/Darwin-2",
+      "revision": "bdaca2b6fb9a17f720cb8c9f81cb739c3d298bcf",
+      "tree": "bec879db77d86a3f36e1fbabbcb9425b79102ee8"
+    },
+    "population_path": "assimilation/evidence/hf-genome-promotion-001/source-episode.json",
+    "population_sha256": "1ac818f401bbaaace91b9c9e84cee90aa7609a9c018bc87001f7bc3b724a8f11",
+    "selection_observation_sha256": "852681e0d1eda9dbeeaa5895a0c7e3f28a6bd00208c2d08f9450178feddab7bd",
+    "selection_predictions_sha256": "53ad6000cd57ffe68a23a2432f1dc8edd56a32ffe2c2496c304ae776c91548fa",
+    "selection_truth_sha256": "8ee0cadf5cd9925a76d1de6b4950ce67eba85c9223055a2a5aafb4c89f44ed18"
+  },
+  "cohort": {
+    "id": "likes-ranks-201-300",
+    "listing_url": "https://huggingface.co/api/models?sort=likes&direction=-1&limit=300",
+    "ranks_one_based": [
+      201,
+      300
+    ],
+    "observation_sha256": "93e148ce93e91b51555401496b64b598cccfc394f1ec863bf658e7e1f2cb9459"
+  },
+  "candidate": {
+    "id": "genome:821ca59d4e0be0e3",
+    "weights": {
+      "likes": 1.4509,
+      "age": -0.2628,
+      "freshness": -0.3255,
+      "tags": -0.0581,
+      "pipeline": 0.1003,
+      "known_org": 0.2625,
+      "id_length": 0.2382
+    }
+  },
+  "baseline": {
+    "id": "named:likes",
+    "weights": {
+      "likes": 1,
+      "age": 0,
+      "freshness": 0,
+      "tags": 0,
+      "pipeline": 0,
+      "known_org": 0,
+      "id_length": 0
+    }
+  },
+  "predictions_sha256": "2317a4cb65311f6e7237a041b92e8aa6bf19e0e38908d0d535116ddf1e0de6bc",
+  "truth_root_sha256": "949de41f9647ab35af79b34199c15c699bd0bb3609ad166797da42d12c1545ab",
+  "metrics": {
+    "scoreable_pairs": 50,
+    "voided_pairs": 0,
+    "candidate_train_accuracy": 0.5,
+    "baseline_train_accuracy": 0.4,
+    "candidate_holdout_accuracy": 0.5,
+    "baseline_holdout_accuracy": 0.5,
+    "truth_evidence_count": 100,
+    "provider_successful_responses": 101,
+    "provider_http_attempts": 101
+  },
+  "decision": {
+    "disposition": "REJECT_NO_CROSS_COHORT_GENERALIZATION",
+    "promotion_admitted": false,
+    "retention_admitted": false,
+    "rationale": "The source-selected candidate did not strictly exceed named:likes on both the fresh train and held-out partitions."
+  },
+  "claim_ceiling": "REAL_PUBLIC_HF_THIRD_COHORT_CONFIRMATION_ONLY_NOT_PROMOTION_NOT_RETENTION_NOT_S09_NOT_AUTONOMY"
+}

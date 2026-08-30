@@ -1,0 +1,32 @@
+{
+  "schema": "darwin.hf-genome-confirmation-input/1",
+  "evaluation_id": "hf-genome-confirmation-002",
+  "source": {
+    "output_evidence": {
+      "repository": "Spicy-source/Darwin-2nd-placeholder-3rd-darwin-git",
+      "revision": "acd02aa90793f4ef3277e0d8ee94a518416d7bb8",
+      "tree": "7910747b93302d2a931042c8f3358f45bbc2506f",
+      "evidence_root_sha256": "11c6b3d89c8ca273c07893de5cf6b67ef8c9d769f8253d3c074ac8c9dc5247ac"
+    },
+    "population_origin": {
+      "repository": "Spicy-source/Darwin-2",
+      "revision": "bdaca2b6fb9a17f720cb8c9f81cb739c3d298bcf",
+      "tree": "bec879db77d86a3f36e1fbabbcb9425b79102ee8"
+    },
+    "population_path": "assimilation/evidence/hf-genome-promotion-001/source-episode.json",
+    "population_sha256": "1ac818f401bbaaace91b9c9e84cee90aa7609a9c018bc87001f7bc3b724a8f11",
+    "selection_observation_sha256": "852681e0d1eda9dbeeaa5895a0c7e3f28a6bd00208c2d08f9450178feddab7bd",
+    "selection_predictions_sha256": "53ad6000cd57ffe68a23a2432f1dc8edd56a32ffe2c2496c304ae776c91548fa",
+    "selection_truth_sha256": "8ee0cadf5cd9925a76d1de6b4950ce67eba85c9223055a2a5aafb4c89f44ed18"
+  },
+  "candidate": {
+    "id": "genome:821ca59d4e0be0e3",
+    "weights": { "likes": 1.4509, "age": -0.2628, "freshness": -0.3255, "tags": -0.0581, "pipeline": 0.1003, "known_org": 0.2625, "id_length": 0.2382 }
+  },
+  "baseline": { "id": "named:likes", "weights": { "likes": 1, "age": 0, "freshness": 0, "tags": 0, "pipeline": 0, "known_org": 0, "id_length": 0 } },
+  "source_selection": { "candidate_score": 35, "population_max_score": 35, "unique_maximum": true, "pair_count": 50, "cohort": "likes-ranks-101-200" },
+  "world": { "listing_url": "https://huggingface.co/api/models?sort=likes&direction=-1&limit=300", "truth_origin": "https://huggingface.co", "cohort": "likes-ranks-201-300", "cohort_start_zero_based": 200, "cohort_end_exclusive": 300 },
+  "split": { "train_pairs": 30, "holdout_pairs": 20 },
+  "promotion_predicate": "candidate strictly exceeds named:likes on train and holdout with exactly 50 scoreable pairs",
+  "claim_ceiling": "REAL_PUBLIC_HF_THIRD_COHORT_CONFIRMATION_ONLY_NOT_PROMOTION_NOT_RETENTION_NOT_S09_NOT_AUTONOMY"
+}
