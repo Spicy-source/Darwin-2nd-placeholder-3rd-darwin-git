@@ -1,0 +1,57 @@
+{
+  "schema": "darwin.hf-genome-promotion-heldout-evidence-index/1",
+  "evaluation_id": "hf-genome-promotion-001",
+  "entries": [
+    {
+      "role": "input",
+      "path": "assimilation/evidence/hf-genome-promotion-001/input.json",
+      "bytes": 1711,
+      "sha256": "fc4e9e24de382c6484bc6fbc7a25fd976022f5f0d040362ecb26dacc0185ddfc"
+    },
+    {
+      "role": "source_episode",
+      "path": "assimilation/evidence/hf-genome-promotion-001/source-episode.json",
+      "bytes": 5211858,
+      "sha256": "1ac818f401bbaaace91b9c9e84cee90aa7609a9c018bc87001f7bc3b724a8f11"
+    },
+    {
+      "role": "harness",
+      "path": "assimilation/evidence/hf-genome-promotion-001/harness.mjs",
+      "bytes": 27409,
+      "sha256": "983e84e0221613fde2cb2c10754be981bcb68ddd08c9979731aefcc081b52538"
+    },
+    {
+      "role": "observation",
+      "path": "assimilation/evidence/hf-genome-promotion-001/observation.json",
+      "bytes": 134017,
+      "sha256": "852681e0d1eda9dbeeaa5895a0c7e3f28a6bd00208c2d08f9450178feddab7bd"
+    },
+    {
+      "role": "predictions",
+      "path": "assimilation/evidence/hf-genome-promotion-001/predictions.json",
+      "bytes": 71513,
+      "sha256": "53ad6000cd57ffe68a23a2432f1dc8edd56a32ffe2c2496c304ae776c91548fa"
+    },
+    {
+      "role": "trajectory",
+      "path": "assimilation/evidence/hf-genome-promotion-001/trajectory.jsonl",
+      "bytes": 502,
+      "sha256": "317fa158dce1ee8e70c8aded887f4f605a2f6c7738b4c7d77aade3b68fa04890"
+    },
+    {
+      "role": "truth",
+      "path": "assimilation/evidence/hf-genome-promotion-001/truth.jsonl",
+      "bytes": 1500919,
+      "sha256": "8ee0cadf5cd9925a76d1de6b4950ce67eba85c9223055a2a5aafb4c89f44ed18"
+    },
+    {
+      "role": "result",
+      "path": "assimilation/evidence/hf-genome-promotion-001/result.json",
+      "bytes": 2400,
+      "sha256": "54473aecbaf62a194e0438e80fcb421a016a0056b6bb5754680e9666137f013f"
+    }
+  ],
+  "total_files": 8,
+  "total_bytes": 6950329,
+  "evidence_root_sha256": "11c6b3d89c8ca273c07893de5cf6b67ef8c9d769f8253d3c074ac8c9dc5247ac"
+}

@@ -1,0 +1,2 @@
+{"event":"PREDICTIONS_COMMITTED","observation_sha256":"852681e0d1eda9dbeeaa5895a0c7e3f28a6bd00208c2d08f9450178feddab7bd","predictions_sha256":"53ad6000cd57ffe68a23a2432f1dc8edd56a32ffe2c2496c304ae776c91548fa","provider_successful_responses":1,"sequence":1}
+{"event":"TRUTH_SETTLED","predictions_sha256":"53ad6000cd57ffe68a23a2432f1dc8edd56a32ffe2c2496c304ae776c91548fa","provider_successful_responses":101,"sequence":2,"truth_sha256":"8ee0cadf5cd9925a76d1de6b4950ce67eba85c9223055a2a5aafb4c89f44ed18"}

@@ -1,0 +1,68 @@
+{
+  "schema": "darwin.hf-genome-promotion-heldout-result/1",
+  "evaluation_id": "hf-genome-promotion-001",
+  "evaluated_at": "Sun, 30 Aug 2026 06:07:24 GMT",
+  "source": {
+    "repository": "Spicy-source/Darwin-2",
+    "revision": "bdaca2b6fb9a17f720cb8c9f81cb739c3d298bcf",
+    "tree": "bec879db77d86a3f36e1fbabbcb9425b79102ee8",
+    "episode_id": "evo:4b6f310e7aeecc9279755cf0",
+    "result_sha256": "0ed7e8a98a904a2c8b28201992ff77f42ecbce5fb237f37011ba834ee6bb5406",
+    "evidence_sha256": "8a320b8abd7b5c55a9a5fc7e0a00a1f64d158773bb6b526f1afec5e93e9f85c6",
+    "artifact_path": "assimilation/evidence/hf-genome-promotion-001/source-episode.json",
+    "artifact_sha256": "1ac818f401bbaaace91b9c9e84cee90aa7609a9c018bc87001f7bc3b724a8f11"
+  },
+  "cohort": {
+    "id": "likes-ranks-101-200",
+    "listing_url": "https://huggingface.co/api/models?sort=likes&direction=-1&limit=200",
+    "ranks_one_based": [
+      101,
+      200
+    ],
+    "observation_sha256": "22384f10f996720410258181f5cff0d55490f994472e60e1a36ec7eee9f8d505"
+  },
+  "candidate": {
+    "id": "genome:aef499ba354adef5",
+    "weights": {
+      "likes": 0,
+      "age": -0.4002,
+      "freshness": 0.1448,
+      "tags": 0,
+      "pipeline": 0.3503,
+      "known_org": 0,
+      "id_length": -0.2854
+    }
+  },
+  "baseline": {
+    "id": "named:likes",
+    "weights": {
+      "likes": 1,
+      "age": 0,
+      "freshness": 0,
+      "tags": 0,
+      "pipeline": 0,
+      "known_org": 0,
+      "id_length": 0
+    }
+  },
+  "predictions_sha256": "af0ffbc3e312b574f529e57f116392087c35e04cbb85ca00e36f90c8e2108083",
+  "truth_root_sha256": "63da9014c3ea92ad6b2eb328786d24f1980fb95a75c32e33bd35d72b37b5bd7a",
+  "metrics": {
+    "scoreable_pairs": 50,
+    "voided_pairs": 0,
+    "candidate_train_accuracy": 0.5333,
+    "baseline_train_accuracy": 0.6,
+    "candidate_holdout_accuracy": 0.7,
+    "baseline_holdout_accuracy": 0.65,
+    "truth_evidence_count": 100,
+    "provider_successful_responses": 101,
+    "provider_http_attempts": 101
+  },
+  "decision": {
+    "disposition": "REJECT_NO_CROSS_COHORT_GENERALIZATION",
+    "promotion_admitted": false,
+    "retention_admitted": false,
+    "rationale": "The quarantined candidate did not strictly exceed named:likes on both the fresh train and held-out partitions."
+  },
+  "claim_ceiling": "REAL_PUBLIC_HF_HELDOUT_COHORT_REJECTION_EVIDENCE_ONLY_NOT_PROMOTION_NOT_RETENTION_NOT_S09_NOT_AUTONOMY"
+}
