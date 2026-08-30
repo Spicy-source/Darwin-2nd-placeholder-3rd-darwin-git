@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { existsSync, readdirSync, statSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -24,6 +24,21 @@ require(result.claim_ceiling === ceiling && decision.claim_ceiling === ceiling, 
 require(result.input.darwin_revision === "40f90b8f437a47c180323d65dfa023d312860b23", "REVISION_MISMATCH");
 require(result.input.darwin_tree === "5753c0f982e5e9cb8d45002f296ea292bcd8fe4c", "TREE_MISMATCH");
 require(result.input.dbos_version === "4.27.6", "DBOS_VERSION_MISMATCH");
+require(
+  result.input.dbos_integrity ===
+    "sha512-mr5CEllYovAHPh/TpQcvxTYM+4t4tgV7CjkZGe7hzNxw9Nzf6l7ggxJKDbewLFwgwx8NaWcWw21ESHXNE1UwrA==",
+  "DBOS_INTEGRITY_MISMATCH",
+);
+require(
+  result.input.postgres_image ===
+    "postgres:16.11@sha256:ed5a1fad193768f89265c7c297999bab9aa116e82142f6e38bc33b8587b2f2da",
+  "POSTGRES_IMAGE_MISMATCH",
+);
+require(
+  result.input.postgres_image_id ===
+    "sha256:ed5a1fad193768f89265c7c297999bab9aa116e82142f6e38bc33b8587b2f2da",
+  "POSTGRES_IMAGE_ID_MISMATCH",
+);
 require(result.input.faults.length === 1 && result.input.faults[0] === "F3", "FAULT_SET_MISMATCH");
 require(result.input.reps === 5 && result.runs.length === 10, "RUN_COUNT_MISMATCH");
 require(new Set(result.runs.map((row) => row.run_id)).size === 10, "RUN_ID_DUPLICATE");
@@ -49,9 +64,58 @@ for (const arm of ["incumbent", "dbos"]) {
   require(result.summary[arm].duplicate_markers === 0, `SUMMARY_DUPLICATE:${arm}`);
   require(result.summary[arm].worker_errors === 0, `SUMMARY_WORKER:${arm}`);
 }
+for (let rep = 0; rep < 5; rep += 1) {
+  const pair = result.runs.filter((row) => row.rep === rep);
+  require(pair.length === 2 && new Set(pair.map((row) => row.arm)).size === 2, `PAIR_ARMS:${rep}`);
+  require(pair[0].pair_id === pair[1].pair_id, `PAIR_ID:${rep}`);
+  require(pair[0].provider.key === pair[1].provider.key, `PAIR_PROVIDER_KEY:${rep}`);
+  require(pair[0].provider.marker_sha256 === pair[1].provider.marker_sha256, `PAIR_MARKER:${rep}`);
+}
+
+for (const row of result.runs) {
+  const runRoot = join(runsRoot, row.run_id);
+  const raw = readJson(join(runRoot, "run.json"));
+  require(stableJson(raw) === stableJson(row), `RAW_RUN_MISMATCH:${row.run_id}`);
+  const marker = readFileSync(join(runRoot, "provider", "marker.bin"));
+  const provider = readJson(join(runRoot, "provider", "provider-state.json"));
+  require(provider.created_count === 1, `RAW_PROVIDER_COUNT:${row.run_id}`);
+  require(
+    provider.events.filter((event) => event.kind === "created").length === 1 &&
+      provider.events.every((event) => event.kind !== "ensure_conflict"),
+    `RAW_PROVIDER_EVENTS:${row.run_id}`,
+  );
+  require(sha256(marker) === row.provider.marker_sha256, `RAW_MARKER_HASH:${row.run_id}`);
+  require(marker.equals(Buffer.from(row.provider.marker_base64, "base64")), `RAW_MARKER_BYTES:${row.run_id}`);
+  require(
+    readdirSync(runRoot).every((name) => !name.startsWith("worker-error-")),
+    `RAW_WORKER_ERROR:${row.run_id}`,
+  );
+  if (row.arm === "dbos") {
+    require(row.result.workflow_status.status === "SUCCESS", `DBOS_STATUS:${row.run_id}`);
+    require(
+      stableJson(row.result.workflow_steps.map((step) => step.name)) ===
+        stableJson(["observe", "prepare", "reinspect-ensure", "finalize"]),
+      `DBOS_STEPS:${row.run_id}`,
+    );
+    require(
+      readFileSync(join(runRoot, "dbos.sql"), "utf8").includes(row.result.workflow_id),
+      `DBOS_SQL_WORKFLOW:${row.run_id}`,
+    );
+  } else {
+    require(row.result.journal_rows === 9, `INCUMBENT_JOURNAL_ROWS:${row.run_id}`);
+    const receiptFiles = readdirSync(join(runRoot, "incumbent-receipts"));
+    require(receiptFiles.length === 1, `INCUMBENT_RECEIPT_COUNT:${row.run_id}`);
+    const receipt = JSON.parse(readFileSync(join(runRoot, "incumbent-receipts", receiptFiles[0])));
+    require(!("effect_disposition" in receipt) && !("volatile" in receipt), `RECEIPT_CORE:${row.run_id}`);
+  }
+}
 require(
   result.disposition === "REJECT_NO_INCREMENTAL_CAPABILITY_SECOND_OWNER",
   "RESULT_DISPOSITION",
+);
+require(
+  decision.decision_id === "dbos-durable-recovery-001-heldout-f3-postrepair",
+  "DECISION_ID",
 );
 require(decision.decision.disposition === result.disposition, "DECISION_DISPOSITION");
 require(decision.decision.adoption_status === "NOT_ADOPTED", "ADOPTION_STATUS");
@@ -88,6 +152,23 @@ require(
   "INDEX_PATH_SET",
 );
 require(index.total_files === index.entries.length, "INDEX_COUNT");
+require(index.protocol === "darwin.dbos-heldout-evidence-index/v1", "INDEX_PROTOCOL");
+require(index.label === label, "INDEX_LABEL");
+const allowedSources = new Set([
+  "common.mjs",
+  "provider.mjs",
+  "worker.mjs",
+  "supervisor.mjs",
+  "heldout-f3-postrepair-check.mjs",
+  "package.json",
+  "package-lock.json",
+]);
+require(
+  index.entries.every(
+    (entry) => entry.path.startsWith(`${label}-`) || allowedSources.has(entry.path),
+  ),
+  "PRIOR_ARTIFACT_INCLUDED",
+);
 require(index.root_sha256 === sha256(stableJson(index.entries)), "INDEX_ROOT");
 let totalBytes = 0;
 for (const entry of index.entries) {
