@@ -8,7 +8,7 @@ import {
   readdirSync,
   statSync,
 } from "node:fs";
-import { basename, join, resolve } from "node:path";
+import { basename, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import {
@@ -36,6 +36,8 @@ const image = String(
 const canaryRoot = fileURLToPath(new URL(".", import.meta.url));
 const label = String(args.label ?? "");
 if (label && !/^[a-z0-9-]+$/.test(label)) throw new Error("LABEL_INVALID");
+const claimCeiling = String(args["claim-ceiling"] ?? CLAIM_CEILING);
+if (!/^[A-Z0-9_]+$/.test(claimCeiling)) throw new Error("CLAIM_CEILING_INVALID");
 const runsRoot = join(canaryRoot, label ? `${label}-runs` : "runs");
 const resultPath = join(canaryRoot, label ? `${label}-result.json` : "result.json");
 const decisionPath = resolve(
@@ -56,8 +58,20 @@ const docker = (...argv) =>
 const tree = execFileSync("git", ["-C", darwinRepo, "rev-parse", "HEAD^{tree}"], {
   encoding: "utf8",
 }).trim();
-if (tree !== "2eaba3e1ca85919c9fcc02cdbdcbbb625215b1ae")
+const revision = execFileSync("git", ["-C", darwinRepo, "rev-parse", "HEAD"], {
+  encoding: "utf8",
+}).trim();
+const expectedTree = String(
+  args["darwin-tree"] ?? "2eaba3e1ca85919c9fcc02cdbdcbbb625215b1ae",
+);
+const expectedRevision = String(args["darwin-revision"] ?? "");
+if (!/^[0-9a-f]{40}$/.test(expectedTree)) throw new Error("DARWIN_TREE_ARG_INVALID");
+if (expectedRevision && !/^[0-9a-f]{40}$/.test(expectedRevision))
+  throw new Error("DARWIN_REVISION_ARG_INVALID");
+if (tree !== expectedTree)
   throw new Error(`DARWIN_TREE_MISMATCH:${tree}`);
+if (expectedRevision && revision !== expectedRevision)
+  throw new Error(`DARWIN_REVISION_MISMATCH:${revision}`);
 
 const lock = readJson(join(canaryRoot, "package-lock.json"));
 const dbosLock = lock.packages["node_modules/@dbos-inc/dbos-sdk"];
@@ -396,8 +410,9 @@ if (byArm.dbos.hard_vetoes > 0 || byArm.dbos.completed < byArm.incumbent.complet
 const result = {
   protocol: RESULT_PROTOCOL,
   disposition,
-  claim_ceiling: CLAIM_CEILING,
+  claim_ceiling: claimCeiling,
   input: {
+    darwin_revision: revision,
     darwin_tree: tree,
     dbos_version: dbosLock.version,
     dbos_integrity: dbosLock.integrity,
@@ -414,7 +429,7 @@ const result = {
 writeJsonAtomic(resultPath, result);
 writeJsonAtomic(decisionPath, {
   schema: "darwin.assimilation-decision/1",
-  decision_id: "dbos-durable-recovery-001",
+  decision_id: label ? `dbos-durable-recovery-001-${label}` : "dbos-durable-recovery-001",
   candidate: {
     package: "@dbos-inc/dbos-sdk",
     version: dbosLock.version,
@@ -429,8 +444,48 @@ writeJsonAtomic(decisionPath, {
         : "See the sealed bakeoff result and per-run vetoes.",
   },
   evidence: {
-    result_path: "assimilation/evidence/dbos-durable-recovery-001/result.json",
+    result_path: `assimilation/evidence/dbos-durable-recovery-001/${basename(resultPath)}`,
     result_sha256: fileSha256(resultPath),
   },
-  claim_ceiling: CLAIM_CEILING,
+  claim_ceiling: claimCeiling,
 });
+
+function evidenceFiles(path) {
+  const stat = statSync(path);
+  if (stat.isFile()) return [path];
+  return readdirSync(path, { withFileTypes: true }).flatMap((entry) =>
+    entry.isDirectory() ? evidenceFiles(join(path, entry.name)) : [join(path, entry.name)],
+  );
+}
+
+if (label) {
+  const indexed = [
+    runsRoot,
+    resultPath,
+    decisionPath,
+    ...[
+      "common.mjs",
+      "provider.mjs",
+      "worker.mjs",
+      "supervisor.mjs",
+      "heldout-f3-postrepair-check.mjs",
+      "package.json",
+      "package-lock.json",
+    ].map((name) => join(canaryRoot, name)),
+  ]
+    .flatMap(evidenceFiles)
+    .map((path) => ({
+      path: relative(canaryRoot, path).replaceAll("\\", "/"),
+      bytes: fileBytes(path),
+      sha256: fileSha256(path),
+    }))
+    .sort((a, b) => a.path.localeCompare(b.path));
+  writeJsonAtomic(join(canaryRoot, `${label}-evidence-index.json`), {
+    protocol: "darwin.dbos-heldout-evidence-index/v1",
+    label,
+    entries: indexed,
+    total_files: indexed.length,
+    total_bytes: indexed.reduce((sum, entry) => sum + entry.bytes, 0),
+    root_sha256: sha256(stableJson(indexed)),
+  });
+}
