@@ -76,6 +76,10 @@ for (const row of result.runs) {
   const runRoot = join(runsRoot, row.run_id);
   const raw = readJson(join(runRoot, "run.json"));
   require(stableJson(raw) === stableJson(row), `RAW_RUN_MISMATCH:${row.run_id}`);
+  require(
+    stableJson(readJson(join(runRoot, "worker-result.json"))) === stableJson(row.result),
+    `RAW_WORKER_RESULT:${row.run_id}`,
+  );
   const marker = readFileSync(join(runRoot, "provider", "marker.bin"));
   const provider = readJson(join(runRoot, "provider", "provider-state.json"));
   require(provider.created_count === 1, `RAW_PROVIDER_COUNT:${row.run_id}`);
@@ -96,6 +100,10 @@ for (const row of result.runs) {
       stableJson(row.result.workflow_steps.map((step) => step.name)) ===
         stableJson(["observe", "prepare", "reinspect-ensure", "finalize"]),
       `DBOS_STEPS:${row.run_id}`,
+    );
+    require(
+      row.result.workflow_steps.every((step) => step.error === null && step.output !== null),
+      `DBOS_STEP_TERMINAL:${row.run_id}`,
     );
     require(
       readFileSync(join(runRoot, "dbos.sql"), "utf8").includes(row.result.workflow_id),
