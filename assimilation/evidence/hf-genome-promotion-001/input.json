@@ -1,0 +1,51 @@
+{
+  "schema": "darwin.hf-genome-promotion-heldout-input/1",
+  "evaluation_id": "hf-genome-promotion-001",
+  "source": {
+    "repository": "Spicy-source/Darwin-2",
+    "revision": "bdaca2b6fb9a17f720cb8c9f81cb739c3d298bcf",
+    "tree": "bec879db77d86a3f36e1fbabbcb9425b79102ee8",
+    "episode_id": "evo:4b6f310e7aeecc9279755cf0",
+    "result_sha256": "0ed7e8a98a904a2c8b28201992ff77f42ecbce5fb237f37011ba834ee6bb5406",
+    "evidence_sha256": "8a320b8abd7b5c55a9a5fc7e0a00a1f64d158773bb6b526f1afec5e93e9f85c6",
+    "artifact_path": "assimilation/evidence/hf-genome-promotion-001/source-episode.json",
+    "artifact_sha256": "1ac818f401bbaaace91b9c9e84cee90aa7609a9c018bc87001f7bc3b724a8f11"
+  },
+  "candidate": {
+    "id": "genome:aef499ba354adef5",
+    "weights": {
+      "likes": 0,
+      "age": -0.4002,
+      "freshness": 0.1448,
+      "tags": 0,
+      "pipeline": 0.3503,
+      "known_org": 0,
+      "id_length": -0.2854
+    }
+  },
+  "baseline": {
+    "id": "named:likes",
+    "weights": {
+      "likes": 1,
+      "age": 0,
+      "freshness": 0,
+      "tags": 0,
+      "pipeline": 0,
+      "known_org": 0,
+      "id_length": 0
+    }
+  },
+  "world": {
+    "listing_url": "https://huggingface.co/api/models?sort=likes&direction=-1&limit=200",
+    "truth_origin": "https://huggingface.co",
+    "cohort": "likes-ranks-101-200",
+    "cohort_start_zero_based": 100,
+    "cohort_end_exclusive": 200
+  },
+  "split": {
+    "train_pairs": 30,
+    "holdout_pairs": 20
+  },
+  "promotion_predicate": "candidate strictly exceeds named:likes on train and holdout with exactly 50 scoreable pairs",
+  "claim_ceiling": "REAL_PUBLIC_HF_HELDOUT_COHORT_REJECTION_EVIDENCE_ONLY_NOT_PROMOTION_NOT_RETENTION_NOT_S09_NOT_AUTONOMY"
+}

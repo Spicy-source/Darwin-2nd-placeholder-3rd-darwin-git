@@ -1,0 +1,46 @@
+{
+  "schema": "darwin.hf-genome-promotion-heldout-decision/1",
+  "evaluation_id": "hf-genome-promotion-001",
+  "result": "REJECT_NO_CROSS_COHORT_GENERALIZATION",
+  "candidate": {
+    "id": "genome:aef499ba354adef5",
+    "weights": {
+      "likes": 0,
+      "age": -0.4002,
+      "freshness": 0.1448,
+      "tags": 0,
+      "pipeline": 0.3503,
+      "known_org": 0,
+      "id_length": -0.2854
+    }
+  },
+  "baseline": {
+    "id": "named:likes",
+    "weights": {
+      "likes": 1,
+      "age": 0,
+      "freshness": 0,
+      "tags": 0,
+      "pipeline": 0,
+      "known_org": 0,
+      "id_length": 0
+    }
+  },
+  "metrics": {
+    "scoreable_pairs": 50,
+    "voided_pairs": 0,
+    "candidate_train_accuracy": 0.5333,
+    "baseline_train_accuracy": 0.6,
+    "candidate_holdout_accuracy": 0.7,
+    "baseline_holdout_accuracy": 0.65,
+    "truth_evidence_count": 100,
+    "provider_successful_responses": 101,
+    "provider_http_attempts": 101
+  },
+  "result_sha256": "54473aecbaf62a194e0438e80fcb421a016a0056b6bb5754680e9666137f013f",
+  "evidence_index_sha256": "c1e12ccdaeee12a720f0c59fd157dc98a752be105c490054636ef1d37c4851fe",
+  "evidence_root_sha256": "11c6b3d89c8ca273c07893de5cf6b67ef8c9d769f8253d3c074ac8c9dc5247ac",
+  "promotion_admitted": false,
+  "retention_admitted": false,
+  "claim_ceiling": "REAL_PUBLIC_HF_HELDOUT_COHORT_REJECTION_EVIDENCE_ONLY_NOT_PROMOTION_NOT_RETENTION_NOT_S09_NOT_AUTONOMY"
+}
