@@ -1,0 +1,17 @@
+{
+  "name": "darwin-db-os-durable-recovery-canary",
+  "private": true,
+  "version": "0.0.0-canary",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "canary": "node supervisor.mjs",
+    "finalize": "node finalize-result.mjs",
+    "check-result": "node result-check.mjs"
+  },
+  "dependencies": {
+    "@dbos-inc/dbos-sdk": "4.27.6"
+  }
+}
