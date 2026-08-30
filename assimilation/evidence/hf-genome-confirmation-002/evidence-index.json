@@ -1,0 +1,75 @@
+{
+  "schema": "darwin.hf-genome-confirmation-evidence-index/1",
+  "evaluation_id": "hf-genome-confirmation-002",
+  "entries": [
+    {
+      "role": "input",
+      "path": "assimilation/evidence/hf-genome-confirmation-002/input.json",
+      "bytes": 2177,
+      "sha256": "8f3c678c017bcdcb14806108bfbf171585e43af17e2c5b68d6f7f781a53a6513"
+    },
+    {
+      "role": "source_population",
+      "path": "assimilation/evidence/hf-genome-confirmation-002/source-population.json",
+      "bytes": 5211858,
+      "sha256": "1ac818f401bbaaace91b9c9e84cee90aa7609a9c018bc87001f7bc3b724a8f11"
+    },
+    {
+      "role": "selection_observation",
+      "path": "assimilation/evidence/hf-genome-confirmation-002/selection-observation.json",
+      "bytes": 134017,
+      "sha256": "852681e0d1eda9dbeeaa5895a0c7e3f28a6bd00208c2d08f9450178feddab7bd"
+    },
+    {
+      "role": "selection_predictions",
+      "path": "assimilation/evidence/hf-genome-confirmation-002/selection-predictions.json",
+      "bytes": 71513,
+      "sha256": "53ad6000cd57ffe68a23a2432f1dc8edd56a32ffe2c2496c304ae776c91548fa"
+    },
+    {
+      "role": "selection_truth",
+      "path": "assimilation/evidence/hf-genome-confirmation-002/selection-truth.jsonl",
+      "bytes": 1500919,
+      "sha256": "8ee0cadf5cd9925a76d1de6b4950ce67eba85c9223055a2a5aafb4c89f44ed18"
+    },
+    {
+      "role": "harness",
+      "path": "assimilation/evidence/hf-genome-confirmation-002/harness.mjs",
+      "bytes": 31914,
+      "sha256": "8234806792f97c4812cb709702aa3ab97214636d0f20098bbb3f045f90d0a2f4"
+    },
+    {
+      "role": "observation",
+      "path": "assimilation/evidence/hf-genome-confirmation-002/observation.json",
+      "bytes": 211416,
+      "sha256": "29c0f600f0f6ce9d4db2e3543b8a75a7c81fd272cb681954e309067056b7b60a"
+    },
+    {
+      "role": "predictions",
+      "path": "assimilation/evidence/hf-genome-confirmation-002/predictions.json",
+      "bytes": 76182,
+      "sha256": "23c588635a0bc2e91983ae4c3ea34f9f413aeaf96618f8fd4d88afdc9a443ed1"
+    },
+    {
+      "role": "trajectory",
+      "path": "assimilation/evidence/hf-genome-confirmation-002/trajectory.jsonl",
+      "bytes": 502,
+      "sha256": "5553758bd7c10e490ac9e9ebe387090db26a52e8254f69d33c8b94cdd29a677c"
+    },
+    {
+      "role": "truth",
+      "path": "assimilation/evidence/hf-genome-confirmation-002/truth.jsonl",
+      "bytes": 4042820,
+      "sha256": "7837334147b46740028ece212c1b220415672c566364afa738f83e5ed477fc16"
+    },
+    {
+      "role": "result",
+      "path": "assimilation/evidence/hf-genome-confirmation-002/result.json",
+      "bytes": 2848,
+      "sha256": "476ba9043a16fd469b33258bcdd1ccbc2c626087952a6b6b0ca866e3bacec318"
+    }
+  ],
+  "total_files": 11,
+  "total_bytes": 11286166,
+  "evidence_root_sha256": "d9f956646c822504325fa93da3e6555e4997f753e9396283f195145b605fa511"
+}
